@@ -198,11 +198,11 @@ Part 1b - Step 2: Assignment
 
 Thing 1) Castle
 5 properties:
-    1) number of gates.
-    2) name of king.
-    3) name of queen.
-    4) amount of taxes collected.
-    5) is at war.
+    1) number of gates (int)
+    2) name of king (std::string)
+    3) name of queen (std::string)
+    4) amount of taxes collected (float)
+    5) is at war (bool)
 3 things it can do:
     1) collect tax from peasants.
     2) open || close gates.
@@ -210,11 +210,11 @@ Thing 1) Castle
 
 Thing 2) MIDI Keyboard
 5 properties:
-    1) number of keys.
-    2) number of knobs.
-    3) number of MPC pads.
-    4) pitch control range.
-    5) mode selection.
+    1) number of keys (int)
+    2) number of knobs (int)
+    3) number of MPC pads (int)
+    4) pitch control range (double)
+    5) mode selection (char)
 3 things it can do:
     1) adjust pitch.
     2) register key presses.
@@ -222,11 +222,11 @@ Thing 2) MIDI Keyboard
 
 Thing 3) Roland TB-303
 5 properties:
-    1) step-sequencer.
-    2) mode dial.
-    3) tempo dial.
-    4) cutoff frequency filter knob.
-    5) volume knob.
+    1) step-sequencer (int)
+    2) mode dial (int)
+    3) tempo dial (int)
+    4) cutoff frequency filter knob (float)
+    5) volume knob (float)
 3 things it can do:
     1) program sequence of notes.
     2) apply filtering.
@@ -234,11 +234,11 @@ Thing 3) Roland TB-303
 
 Thing 4) Dictaphone
 5 properties:
-    1) record button.
-    2) play button.
-    3) adjust microphone sensitivity.
-    4) display storage amount.
-    5) data output port.
+    1) record button (int)
+    2) play button (int)
+    3) adjust microphone sensitivity (double)
+    4) display storage amount (std::string)
+    5) data output port (float)
 3 things it can do:
     1) export audio files.
     2) record audio files.
