@@ -196,53 +196,53 @@ Part 1b - Step 2: Assignment
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
 
-Thing 1)
+Thing 1) Castle
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of gates.
+    2) name of king.
+    3) name of queen.
+    4) amount of taxes collected.
+    5) is at war.
 3 things it can do:
-    1)
-    2)
-    3)
+    1) collect tax from peasants.
+    2) open || close gates.
+    3) give orders to the kingdom.
 
-Thing 2)
+Thing 2) MIDI Keyboard
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of keys.
+    2) number of knobs.
+    3) number of MPC pads.
+    4) pitch control range.
+    5) mode selection.
 3 things it can do:
-    1)
-    2)
-    3)
+    1) adjust pitch.
+    2) register key presses.
+    3) register pad hit velocities.
 
-Thing 3)
+Thing 3) Roland TB-303
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) step-sequencer.
+    2) mode dial.
+    3) tempo dial.
+    4) cutoff frequency filter knob.
+    5) volume knob.
 3 things it can do:
-    1)
-    2)
-    3)
+    1) program sequence of notes.
+    2) apply filtering.
+    3) increase || decrease playback tempo.
 
-Thing 4)
+Thing 4) Dictaphone
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) record button.
+    2) play button.
+    3) adjust microphone sensitivity.
+    4) display storage amount.
+    5) data output port.
 3 things it can do:
-    1)
-    2)
-    3)
+    1) export audio files.
+    2) record audio files.
+    3) display recording space available.
 */
 
 /*
