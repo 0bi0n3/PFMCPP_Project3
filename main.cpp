@@ -342,7 +342,7 @@ Thing 10) Gaming Laptop
     1) screen.
     2) CPU.
     3) GPU.
-    4) hard disk.
+    4) Memory.
     5) USB port.
 3 things it can do:
     1) Load a game.
@@ -434,65 +434,65 @@ example:
     You will need to provide 5 properties and 3 member functions of that Engine object in plain English.
     Remember to pick properties that can be represented with 'int float double bool char std::string'.
 
-Thing 5)
+Thing 5) Screen
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of pixels
+    2) refresh rate
+    3) colour space
+    4) aspect ratio
+    5) resolution
 3 things it can do:
-    1)
-    2)
-    3)
+    1) increase brightness
+    2) change contrast
+    3) switch aspect ratio
 
-Thing 6)
+Thing 6) CPU
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Processor clock speed
+    2) Memory management amount
+    3) Cache size
+    4) RAM size
+    5) Architecture type
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Save data
+    2) Process data
+    3) Access data
 
-Thing 7)
+Thing 7) GPU
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Clock speed
+    2) Memory bus size
+    3) Processor speed
+    4) Number of input/output streams
+    5) Fan speed
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Increase ventilation amount
+    2) Render graphics
+    3) Overlock processing speed
 
-Thing 8)
+Thing 8) Memory
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) capacity size
+    2) storage type
+    3) data rate
+    4) seek time
+    5) RAM type
 3 things it can do:
-    1)
-    2)
-    3)
+    1) write data
+    2) read data
+    3) erase data
 
-Thing 9)
+Thing 9) USB port
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) data transfer speed
+    2) number of ports
+    3) connector type
+    4) power output
+    5) backward compatibility
 3 things it can do:
-    1)
-    2)
-    3)
+    1) connect external devices
+    2) transfer files
+    3) charge devices
  */
 
 /*
