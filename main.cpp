@@ -436,11 +436,11 @@ example:
 
 Thing 5) Screen
 5 properties:
-    1) number of pixels
-    2) refresh rate
-    3) colour space
-    4) aspect ratio
-    5) resolution
+    1) number of pixels (int)
+    2) refresh rate (int)
+    3) colour space (std::string)
+    4) aspect ratio (int)
+    5) resolution (int)
 3 things it can do:
     1) increase brightness
     2) change contrast
@@ -448,11 +448,11 @@ Thing 5) Screen
 
 Thing 6) CPU
 5 properties:
-    1) Processor clock speed
-    2) Memory management amount
-    3) Cache size
-    4) RAM size
-    5) Architecture type
+    1) Processor clock speed (int)
+    2) Memory management amount (int)
+    3) Cache size (int)
+    4) RAM size (int)
+    5) Architecture type (std::string)
 3 things it can do:
     1) Save data
     2) Process data
@@ -460,11 +460,11 @@ Thing 6) CPU
 
 Thing 7) GPU
 5 properties:
-    1) Clock speed
-    2) Memory bus size
-    3) Processor speed
-    4) Number of input/output streams
-    5) Fan speed
+    1) Clock speed (int)
+    2) Memory bus size (int)
+    3) Processor speed (int)
+    4) Number of input/output streams (int)
+    5) Fan speed (float)
 3 things it can do:
     1) Increase ventilation amount
     2) Render graphics
@@ -472,11 +472,11 @@ Thing 7) GPU
 
 Thing 8) Memory
 5 properties:
-    1) capacity size
-    2) storage type
-    3) data rate
-    4) seek time
-    5) RAM type
+    1) capacity size (int)
+    2) storage type (std::string)
+    3) data rate (float)
+    4) seek time (double)
+    5) RAM type (std::string)
 3 things it can do:
     1) write data
     2) read data
@@ -484,11 +484,11 @@ Thing 8) Memory
 
 Thing 9) USB port
 5 properties:
-    1) data transfer speed
-    2) number of ports
-    3) connector type
-    4) power output
-    5) backward compatibility
+    1) data transfer speed (float)
+    2) number of ports (int)
+    3) connector type (std::string)
+    4) power output (int)
+    5) backward compatibility (std::string)
 3 things it can do:
     1) connect external devices
     2) transfer files
