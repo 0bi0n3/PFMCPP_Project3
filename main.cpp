@@ -632,6 +632,16 @@ Thing 1) Castle
 */
 struct Castle
 {
+// 5 properties:
+    int numberOfGates = 8;
+    std::string nameOfKing = "Edward";
+    std::string nameOfQueen = "Magda";
+    float amountOfTaxesCollected = 349.77f;
+    bool isAtWar = false;
+// 3 things it can do:
+    // 1) collect tax from peasants.
+    // 2) open || close gates.
+    // 3) give orders to the kingdom.
 
 };
 
@@ -650,7 +660,16 @@ Thing 2) MIDI Keyboard
 */
 struct MidiKeyboard
 {
-
+// 5 properties:
+    int numberOfKeys = 49;
+    int numberOfKnobs = 12;
+    int numberOfMPCPads = 8;
+    double pitchControlRange = 200000.0;
+    char modeSelection = 'X';
+// 3 things it can do:
+//     1) adjust pitch.
+//     2) register key presses.
+//     3) register pad hit velocities.
 };
 
 /*
@@ -668,7 +687,16 @@ Thing 3) Roland TB-303
 */
 struct RolandTB303
 {
-
+// 5 properties:
+    int stepSequencer = 16;
+    int modeDial = 10;
+    int tempoDial = 32;
+    float cutoffFrequencyFilterKnob = 750.f;
+    float volumeKnob = 96.f;
+// 3 things it can do:
+//     1) program sequence of notes.
+//     2) apply filtering.
+//     3) increase || decrease playback tempo.
 };
 
 /*
@@ -686,7 +714,16 @@ Thing 4) Dictaphone
 */
 struct Dictaphone
 {
-
+// 5 properties:
+    int recordButton = 3;
+    int playButton = 2;
+    double adjustMicrophoneSensitivity = 10000.0;
+    std::string displayStorageAmount = " 900MBs";
+    float dataOutputPort = 76.f;
+// 3 things it can do:
+//     1) export audio files.
+//     2) record audio files.
+//     3) display recording space available.
 };
 
 /*
@@ -704,7 +741,16 @@ Thing 5) Screen
 */
 struct Screen
 {
-
+// 5 properties:
+    int numberOfPixels = 500;
+    int refreshRate = 144;
+    std::string colourSpace = "RGB";
+    int aspectRatio = 16/9;
+    int resolution = 1080;
+// 3 things it can do:
+//     1) increase brightness
+//     2) change contrast
+//     3) switch aspect ratio
 };
 
 /*
@@ -722,7 +768,16 @@ Thing 6) CPU
 */
 struct CPU
 {
-
+// 5 properties:
+    int processorClockSpeed = 3500;
+    int memoryManagementAmount = 480;
+    int cacheSize = 200;
+    int ramSize = 16;
+    std::string architectureType = "x86_64";
+// 3 things it can do:
+//     1) Save data
+//     2) Process data
+//     3) Access data
 };
 
 /*
@@ -740,7 +795,16 @@ Thing 7) GPU
 */
 struct GPU
 {
-
+// 5 properties:
+    int clockSpeed = 2400;
+    int memoryBusSize = 1400;
+    int processorSpeed = 320;
+    int numberOfInputOutputStreams = 6;
+    int fanSpeed = 12.f;
+// 3 things it can do:
+//     1) Increase ventilation amount
+//     2) Render graphics
+//     3) Overlock processing speed
 };
 
 /*
@@ -758,7 +822,16 @@ Thing 8) Memory
 */
 struct Memory
 {
-
+// 5 properties:
+    int capacitySize = 256;
+    std::string storageType = "SSD";
+    float dataRate = 18.5f;
+    double seekTime = 46.889;
+    std::string ramType = "DRAM";
+// 3 things it can do:
+//     1) write data
+//     2) read data
+//     3) erase data
 };
 
 /*
@@ -776,7 +849,16 @@ Thing 9) USB port
 */
 struct UsbPort
 {
-
+// 5 properties:
+    float dataTransferSpeed = 16.8f;
+    int numberOfPorts = 4;
+    std::string connectorType = "USB-C";
+    int powerOutput = 20;
+    std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
+// 3 things it can do:
+//     1) connect external devices
+//     2) transfer files
+//     3) charge devices
 };
 
 /*
@@ -794,7 +876,16 @@ Thing 10) Gaming Laptop
 */
 struct GamingLaptop
 {
-
+// 5 properties:
+    Screen screen;
+    CPU cpu;
+    GPU gpu;
+    Memory memory;
+    UsbPort usbport;
+// 3 things it can do:
+//     1) Load a game.
+//     2) Connect peripherals.
+//     3) Display image.
 };
 
 
