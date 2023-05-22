@@ -617,6 +617,186 @@ struct CarWash  //This is the empty struct, below my plain-English UDT.
 /*
 Notice that the struct name 'CarWash' conforms with the Course Coding Standard, described in the Readme.MD
 */
+/*
+Thing 1) Castle
+5 properties:
+    1) number of gates (int)
+    2) name of king (std::string)
+    3) name of queen (std::string)
+    4) amount of taxes collected (float)
+    5) is at war (bool)
+3 things it can do:
+    1) collect tax from peasants.
+    2) open || close gates.
+    3) give orders to the kingdom.
+*/
+struct Castle
+{
+
+};
+
+/*
+Thing 2) MIDI Keyboard
+5 properties:
+    1) number of keys (int)
+    2) number of knobs (int)
+    3) number of MPC pads (int)
+    4) pitch control range (double)
+    5) mode selection (char)
+3 things it can do:
+    1) adjust pitch.
+    2) register key presses.
+    3) register pad hit velocities.
+*/
+struct MidiKeyboard
+{
+
+};
+
+/*
+Thing 3) Roland TB-303
+5 properties:
+    1) step-sequencer (int)
+    2) mode dial (int)
+    3) tempo dial (int)
+    4) cutoff frequency filter knob (float)
+    5) volume knob (float)
+3 things it can do:
+    1) program sequence of notes.
+    2) apply filtering.
+    3) increase || decrease playback tempo.
+*/
+struct RolandTB303
+{
+
+};
+
+/*
+Thing 4) Dictaphone
+5 properties:
+    1) record button (int)
+    2) play button (int)
+    3) adjust microphone sensitivity (double)
+    4) display storage amount (std::string)
+    5) data output port (float)
+3 things it can do:
+    1) export audio files.
+    2) record audio files.
+    3) display recording space available.
+*/
+struct Dictaphone
+{
+
+};
+
+/*
+Thing 5) Screen
+5 properties:
+    1) number of pixels (int)
+    2) refresh rate (int)
+    3) colour space (std::string)
+    4) aspect ratio (int)
+    5) resolution (int)
+3 things it can do:
+    1) increase brightness
+    2) change contrast
+    3) switch aspect ratio
+*/
+struct Screen
+{
+
+};
+
+/*
+Thing 6) CPU
+5 properties:
+    1) Processor clock speed (int)
+    2) Memory management amount (int)
+    3) Cache size (int)
+    4) RAM size (int)
+    5) Architecture type (std::string)
+3 things it can do:
+    1) Save data
+    2) Process data
+    3) Access data
+*/
+struct CPU
+{
+
+};
+
+/*
+Thing 7) GPU
+5 properties:
+    1) Clock speed (int)
+    2) Memory bus size (int)
+    3) Processor speed (int)
+    4) Number of input/output streams (int)
+    5) Fan speed (float)
+3 things it can do:
+    1) Increase ventilation amount
+    2) Render graphics
+    3) Overlock processing speed
+*/
+struct GPU
+{
+
+};
+
+/*
+Thing 8) Memory
+5 properties:
+    1) capacity size (int)
+    2) storage type (std::string)
+    3) data rate (float)
+    4) seek time (double)
+    5) RAM type (std::string)
+3 things it can do:
+    1) write data
+    2) read data
+    3) erase data
+*/
+struct Memory
+{
+
+};
+
+/*
+Thing 9) USB port
+5 properties:
+    1) data transfer speed (float)
+    2) number of ports (int)
+    3) connector type (std::string)
+    4) power output (int)
+    5) backward compatibility (std::string)
+3 things it can do:
+    1) connect external devices
+    2) transfer files
+    3) charge devices
+*/
+struct UsbPort
+{
+
+};
+
+/*
+Thing 10) Gaming Laptop
+5 properties:
+    1) screen.
+    2) CPU.
+    3) GPU.
+    4) Memory.
+    5) USB port.
+3 things it can do:
+    1) Load a game.
+    2) Connect peripherals.
+    3) Display image.
+*/
+struct GamingLaptop
+{
+
+};
+
 
 /*
 =================
