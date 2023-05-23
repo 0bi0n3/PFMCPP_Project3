@@ -658,13 +658,15 @@ struct Castle
 
 // 3 things it can do:
     // 1) collect tax from peasants.
-    float reportCollectTaxes(float collectTaxes); // NOTE: Parameter required for a value to perform the function.
+    float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome); // NOTE: Parameter required for a value to perform the function.
 
     // 2) open || close gates.
     void openCastleGates(int numberOfGatesClosed);
 
     // 3) give orders to the kingdom.
     std::string announceOrders(std::string orders); // NOTE: Function returns a string of text and implements the input parameter text.
+
+    FarmlandRevenue agricultureWorth;
 
 };
 
@@ -689,16 +691,17 @@ struct MidiKeyboard
     int numberOfMPCPads = 8;
     double pitchControlRange = 200000.0;
     char modeSelection = 'X';
+};
 // 3 things it can do:
 //     1) adjust pitch.
-    double adjustPitch(double pitchChange); // NOTE: the pitch control effects the adjustment of the functions return value.
+    double adjustPitch(MidiKeyboard pitchChange); // NOTE: the pitch control effects the adjustment of the functions return value.
 //     2) register key presses.
     void isKeyPressed();
 
 //     3) register pad hit velocities.
-    float padHitAmount(); // NOTE: returns a relevant value able to influence other fuctions.
+    float padHitAmount(MidiKeyboard padNumber); // NOTE: returns a relevant value able to influence other fuctions.
 
-};
+
 
 /*
 Thing 3) Roland TB-303
@@ -738,16 +741,18 @@ struct RolandTB303
         void displaySavingProgress(int timeRemaining, float savingRate);
     };
 
+SavePattern save;
+};
 // 3 things it can do:
 //     1) program sequence of notes.
-    void programSequence(int sequence);
+    void programSequence(RolandTB303 sequence);
 
 //     2) apply filtering.
     void filterSignal(float cutoffFrequency);
 
 //     3) increase || decrease playback tempo.
-    float tempoAdjust(int tempo); // NOTE: returns value relating to amount of temp adjustment.
-};
+    float tempoAdjust(RolandTB303 tempo); // NOTE: returns value relating to amount of temp adjustment.
+
 
 /*
 Thing 4) Dictaphone
@@ -770,14 +775,14 @@ struct Dictaphone
     double adjustMicrophoneSensitivity = 10000.0;
     std::string displayStorageAmount = " 900MBs";
     float dataOutputPort = 76.f;
+};
 // 3 things it can do:
 //     1) export audio files.
     void exportAudioFile(float audioData);
 //     2) record audio files.
     void recordingOn(bool activeRecording);
 //     3) display recording space available.
-    std::string displayAvailableSpace();
-};
+    std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
 
 /*
 Thing 5) Screen
@@ -800,14 +805,15 @@ struct Screen
     std::string colourSpace = "RGB";
     int aspectRatio = 16 * 9;
     int resolution = 1080;
+};
 // 3 things it can do:
 //     1) increase brightness
     void brightnessUp(int currentBrightnessLevel);
 //     2) change contrast
-    void adjustContrast();
+    void adjustContrast(Screen screenContrast);
 //     3) switch aspect ratio
-    int screenRatioSwitch(int currentAspectRatio); // NOTE: return value provides back the current state of the switch.
-};
+    int screenRatioSwitch(Screen screenRatio); // NOTE: return value provides back the current state of the switch.
+
 
 /*
 Thing 6) CPU
@@ -830,16 +836,16 @@ struct CPU
     int cacheSize = 200;
     int ramSize = 16;
     std::string architectureType = "x86_64";
+};
 // 3 things it can do:
 //     1) Save data
     int saveSelectedData(int selectedData); // NOTE: returns a flag to indicate save was successful.
 
 //     2) Process data
-    void interpolateData(int dataInputStream);
+    void interpolateData(CPU cpuDataStream);
 
 //     3) Access data
     void openDataFile(std::string fileName);
-};
 
 /*
 Thing 7) GPU
@@ -862,16 +868,17 @@ struct GPU
     int processorSpeed = 320;
     int numberOfInputOutputStreams = 6;
     int fanSpeed = 12.f;
+};
 // 3 things it can do:
 //     1) Increase ventilation amount
-    void fansOn(int currentFanState);
+    void fansOn(GPU gpuFans);
 
 //     2) Render graphics
-    void graphicsRendering();
+    void graphicsRendering(GPU gpu);
 
 //     3) Overlock processing speed
-    float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed); // NOTE: returns overlocking amount as a value.
-};
+    float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu); // NOTE: returns overlocking amount as a value.
+
 
 /*
 Thing 8) Memory
@@ -894,16 +901,17 @@ struct Memory
     float dataRate = 18.5f;
     double seekTime = 46.889;
     std::string ramType = "DRAM";
+};
 // 3 things it can do:
 //     1) write data
-    int writeDataToMemory(float inputDataSource); // NOTE: returns a value to signify successful writing to memory.
+    int writeDataToMemory(Memory memoryDataSource); // NOTE: returns a value to signify successful writing to memory.
 
 //     2) read data
-    void openDataLocation(std::string dataAddress);
+    void openDataLocation(Memory memoryaddress);
 
 //     3) erase data
     void deleteData(std::string selectedData);
-};
+
 
 /*
 Thing 9) USB port
@@ -926,16 +934,17 @@ struct UsbPort
     std::string connectorType = "USB-C";
     int powerOutput = 20;
     std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
+};
 // 3 things it can do:
 //     1) connect external devices
-    int connectingDevice(int deviceInputFlag); // NOTE: returns a value indicating successful or failed connection.
+    int connectingDevice(UsbPort usbInput); // NOTE: returns a value indicating successful or failed connection.
 
 //     2) transfer files
     void fileTransferring(std::string fileToSend);
 
 //     3) charge devices
-    bool chargingConnectedDevice(int deviceConnectionNumber); // NOTE: returns a bool value to cause system to display positive LED charging light.
-};
+    bool chargingConnectedDevice(UsbPort usbConnected); // NOTE: returns a bool value to cause system to display positive LED charging light.
+
 
 /*
 Thing 10) Gaming Laptop
@@ -958,6 +967,7 @@ struct GamingLaptop
     GPU gpu;
     Memory memory;
     UsbPort usbport;
+};
 // 3 things it can do:
 //     1) Load a game.
     void loadingGame(std::string gameApplicationToOpen);
@@ -966,8 +976,8 @@ struct GamingLaptop
     int connectingDevice(std::string deviceName); // NOTE: returns a value to signify successful or failed connections.
 
 //     3) Display image.
-    void displayingToScreen(double applicationVisualStream);
-};
+    void displayingToScreen(GamingLaptop gamingLaptopDisplay);
+
 
 
 /*
