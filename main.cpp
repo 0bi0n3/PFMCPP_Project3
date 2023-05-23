@@ -638,6 +638,24 @@ struct Castle
     std::string nameOfQueen = "Magda";
     float amountOfTaxesCollected = 349.77f;
     bool isAtWar = false;
+
+    // NESTED UDT
+    struct FarmlandRevenue
+    {
+        int farmlandArces = 65;
+        int numberOfWorkers = 120;
+        float wheatSalePricePerKG = 1.8f;
+        std::string farmlandType = "Cereals and Grains";
+        bool isFarmlandInDraught = false;
+
+        void sellWheat(int wheatStockLevel, float currentMarketPrice, int amountToSell);
+
+        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice); // NOTE: returns a value that would match the estimated turnover total.
+
+        void floodFarmlands(int farmlandToFold, float amountOfFlooding, bool farmlandDraught);
+
+    };
+
 // 3 things it can do:
     // 1) collect tax from peasants.
     float reportCollectTaxes(float collectTaxes); // NOTE: Parameter required for a value to perform the function.
@@ -703,6 +721,23 @@ struct RolandTB303
     int tempoDial = 32;
     float cutoffFrequencyFilterKnob = 750.f;
     float volumeKnob = 96.f;
+
+    // NESTED UDT
+    struct SavePattern
+    {
+        int numberOfSteps = 16;
+        int tempoNumberSelected = 10;
+        int loopCount = 4;
+        bool exportingToExternalDisk = false;
+        float randomisationAmount = 4.f;
+
+        void savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo);
+
+        bool savingToExternal(int stepCount, std::string fileType = "TB303.p"); // NOTE: function checks whether external device is selected for export.
+
+        void displaySavingProgress(int timeRemaining, float savingRate);
+    };
+
 // 3 things it can do:
 //     1) program sequence of notes.
     void programSequence(int sequence);
