@@ -640,8 +640,13 @@ struct Castle
     bool isAtWar = false;
 // 3 things it can do:
     // 1) collect tax from peasants.
+    float reportCollectTaxes(float collectTaxes); // NOTE: Parameter required for a value to perform the function.
+
     // 2) open || close gates.
+    void openCastleGates(int numberOfGatesClosed);
+
     // 3) give orders to the kingdom.
+    std::string announceOrders(std::string orders); // NOTE: Function returns a string of text and implements the input parameter text.
 
 };
 
@@ -668,8 +673,13 @@ struct MidiKeyboard
     char modeSelection = 'X';
 // 3 things it can do:
 //     1) adjust pitch.
+    double adjustPitch(double pitchChange); // NOTE: the pitch control effects the adjustment of the functions return value.
 //     2) register key presses.
+    void isKeyPressed();
+
 //     3) register pad hit velocities.
+    float padHitAmount(); // NOTE: returns a relevant value able to influence other fuctions.
+
 };
 
 /*
@@ -695,8 +705,13 @@ struct RolandTB303
     float volumeKnob = 96.f;
 // 3 things it can do:
 //     1) program sequence of notes.
+    void programSequence(int sequence);
+
 //     2) apply filtering.
+    void filterSignal(float cutoffFrequency);
+
 //     3) increase || decrease playback tempo.
+    float tempoAdjust(int tempo); // NOTE: returns value relating to amount of temp adjustment.
 };
 
 /*
@@ -722,8 +737,11 @@ struct Dictaphone
     float dataOutputPort = 76.f;
 // 3 things it can do:
 //     1) export audio files.
+    void exportAudioFile(float audioData);
 //     2) record audio files.
+    void recordingOn(bool activeRecording);
 //     3) display recording space available.
+    std::string displayAvailableSpace();
 };
 
 /*
@@ -745,12 +763,15 @@ struct Screen
     int numberOfPixels = 500;
     int refreshRate = 144;
     std::string colourSpace = "RGB";
-    int aspectRatio = 16/9;
+    int aspectRatio = 16 * 9;
     int resolution = 1080;
 // 3 things it can do:
 //     1) increase brightness
+    void brightnessUp(int currentBrightnessLevel);
 //     2) change contrast
+    void adjustContrast();
 //     3) switch aspect ratio
+    int screenRatioSwitch(int currentAspectRatio); // NOTE: return value provides back the current state of the switch.
 };
 
 /*
@@ -776,8 +797,13 @@ struct CPU
     std::string architectureType = "x86_64";
 // 3 things it can do:
 //     1) Save data
+    int saveSelectedData(int selectedData); // NOTE: returns a flag to indicate save was successful.
+
 //     2) Process data
+    void interpolateData(int dataInputStream);
+
 //     3) Access data
+    void openDataFile(std::string fileName);
 };
 
 /*
@@ -803,8 +829,13 @@ struct GPU
     int fanSpeed = 12.f;
 // 3 things it can do:
 //     1) Increase ventilation amount
+    void fansOn(int currentFanState);
+
 //     2) Render graphics
+    void graphicsRendering();
+
 //     3) Overlock processing speed
+    float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed); // NOTE: returns overlocking amount as a value.
 };
 
 /*
@@ -830,8 +861,13 @@ struct Memory
     std::string ramType = "DRAM";
 // 3 things it can do:
 //     1) write data
+    int writeDataToMemory(float inputDataSource); // NOTE: returns a value to signify successful writing to memory.
+
 //     2) read data
+    void openDataLocation(std::string dataAddress);
+
 //     3) erase data
+    void deleteData(std::string selectedData);
 };
 
 /*
@@ -857,8 +893,13 @@ struct UsbPort
     std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
 // 3 things it can do:
 //     1) connect external devices
+    int connectingDevice(int deviceInputFlag); // NOTE: returns a value indicating successful or failed connection.
+
 //     2) transfer files
+    void fileTransferring(std::string fileToSend);
+
 //     3) charge devices
+    bool chargingConnectedDevice(int deviceConnectionNumber); // NOTE: returns a bool value to cause system to display positive LED charging light.
 };
 
 /*
@@ -884,8 +925,13 @@ struct GamingLaptop
     UsbPort usbport;
 // 3 things it can do:
 //     1) Load a game.
+    void loadingGame(std::string gameApplicationToOpen);
+
 //     2) Connect peripherals.
+    int connectingDevice(std::string deviceName); // NOTE: returns a value to signify successful or failed connections.
+
 //     3) Display image.
+    void displayingToScreen(double applicationVisualStream);
 };
 
 
