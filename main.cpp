@@ -430,128 +430,6 @@ MOVE THEM to the space below this block comment and put them in numerical order
     simply CUT and PASTE them in the space provided below:
 */
 
-/* ----------------------------------------------------------------------------------
-Thing 1) Castle
-5 properties:
-    1) number of gates (int)
-    2) name of king (std::string)
-    3) name of queen (std::string)
-    4) amount of taxes collected (float)
-    5) is at war (bool)
-3 things it can do:
-    1) collect tax from peasants.
-    2) open || close gates.
-    3) give orders to the kingdom.
-
-Thing 2) MIDI Keyboard
-5 properties:
-    1) number of keys (int)
-    2) number of knobs (int)
-    3) number of MPC pads (int)
-    4) pitch control range (double)
-    5) mode selection (char)
-3 things it can do:
-    1) adjust pitch.
-    2) register key presses.
-    3) register pad hit velocities.
-
-Thing 3) Roland TB-303
-5 properties:
-    1) step-sequencer (int)
-    2) mode dial (int)
-    3) tempo dial (int)
-    4) cutoff frequency filter knob (float)
-    5) volume knob (float)
-3 things it can do:
-    1) program sequence of notes.
-    2) apply filtering.
-    3) increase || decrease playback tempo.
-
-Thing 4) Dictaphone
-5 properties:
-    1) record button (int)
-    2) play button (int)
-    3) adjust microphone sensitivity (double)
-    4) display storage amount (std::string)
-    5) data output port (float)
-3 things it can do:
-    1) export audio files.
-    2) record audio files.
-    3) display recording space available.
-
-Thing 5) Screen
-5 properties:
-    1) number of pixels (int)
-    2) refresh rate (int)
-    3) colour space (std::string)
-    4) aspect ratio (int)
-    5) resolution (int)
-3 things it can do:
-    1) increase brightness
-    2) change contrast
-    3) switch aspect ratio
-
-Thing 6) CPU
-5 properties:
-    1) Processor clock speed (int)
-    2) Memory management amount (int)
-    3) Cache size (int)
-    4) RAM size (int)
-    5) Architecture type (std::string)
-3 things it can do:
-    1) Save data
-    2) Process data
-    3) Access data
-
-Thing 7) GPU
-5 properties:
-    1) Clock speed (int)
-    2) Memory bus size (int)
-    3) Processor speed (int)
-    4) Number of input/output streams (int)
-    5) Fan speed (float)
-3 things it can do:
-    1) Increase ventilation amount
-    2) Render graphics
-    3) Overlock processing speed
-
-Thing 8) Memory
-5 properties:
-    1) capacity size (int)
-    2) storage type (std::string)
-    3) data rate (float)
-    4) seek time (double)
-    5) RAM type (std::string)
-3 things it can do:
-    1) write data
-    2) read data
-    3) erase data
-
-Thing 9) USB port
-5 properties:
-    1) data transfer speed (float)
-    2) number of ports (int)
-    3) connector type (std::string)
-    4) power output (int)
-    5) backward compatibility (std::string)
-3 things it can do:
-    1) connect external devices
-    2) transfer files
-    3) charge devices
-    
-Thing 10) Gaming Laptop
-5 properties:
-    1) screen.
-    2) CPU.
-    3) GPU.
-    4) Memory.
-    5) USB port.
-3 things it can do:
-    1) Load a game.
-    2) Connect peripherals.
-    3) Display image.
----------------------------------------------------------------------------------- */
-
 /*
 =================
 Part 1d - Step 7: Commit
@@ -1014,6 +892,7 @@ Part 1e - Step 19: Request a review
 paste your code below
 */
 
+
 /*
 Thing 1) Castle
 5 properties:
@@ -1039,17 +918,17 @@ struct Castle
     // NESTED UDT
     struct FarmlandRevenue
     {
-        int farmlandArces = 65;
+        int arces = 65;
         int numberOfWorkers = 120;
         float wheatSalePricePerKG = 1.8f;
-        std::string farmlandType = "Cereals and Grains";
-        bool isFarmlandInDraught = false;
+        std::string type = "Cereals and Grains";
+        bool isInDrought = false;
 
         void sellWheat(int wheatStockLevel, float currentMarketPrice, int amountToSell);
 
         float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice); // NOTE: returns a value that would match the estimated turnover total.
 
-        void floodFarmlands(int farmlandToFold, float amountOfFlooding, bool farmlandDraught);
+        void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
 
     };
 
@@ -1064,8 +943,8 @@ struct Castle
     std::string announceOrders(std::string orders); // NOTE: Function returns a string of text and implements the input parameter text.
 
     FarmlandRevenue agricultureWorth;
-
 };
+
 
 /*
 Thing 2) MIDI Keyboard
@@ -1088,7 +967,7 @@ struct MidiKeyboard
     int numberOfMPCPads = 8;
     double pitchControlRange = 200000.0;
     char modeSelection = 'X';
-};
+
 // 3 things it can do:
 //     1) adjust pitch.
     double adjustPitch(MidiKeyboard pitchChange); // NOTE: the pitch control effects the adjustment of the functions return value.
@@ -1097,7 +976,7 @@ struct MidiKeyboard
 
 //     3) register pad hit velocities.
     float padHitAmount(MidiKeyboard padNumber); // NOTE: returns a relevant value able to influence other fuctions.
-
+};
 
 
 /*
@@ -1138,8 +1017,8 @@ struct RolandTB303
         void displaySavingProgress(int timeRemaining, float savingRate);
     };
 
-SavePattern save;
-};
+    SavePattern save;
+
 // 3 things it can do:
 //     1) program sequence of notes.
     void programSequence(RolandTB303 sequence);
@@ -1149,6 +1028,7 @@ SavePattern save;
 
 //     3) increase || decrease playback tempo.
     float tempoAdjust(RolandTB303 tempo); // NOTE: returns value relating to amount of temp adjustment.
+};
 
 
 /*
@@ -1172,7 +1052,7 @@ struct Dictaphone
     double adjustMicrophoneSensitivity = 10000.0;
     std::string displayStorageAmount = " 900MBs";
     float dataOutputPort = 76.f;
-};
+
 // 3 things it can do:
 //     1) export audio files.
     void exportAudioFile(float audioData);
@@ -1180,6 +1060,8 @@ struct Dictaphone
     void recordingOn(bool activeRecording);
 //     3) display recording space available.
     std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
+};
+
 
 /*
 Thing 5) Screen
@@ -1202,14 +1084,17 @@ struct Screen
     std::string colourSpace = "RGB";
     int aspectRatio = 16 * 9;
     int resolution = 1080;
-};
+
 // 3 things it can do:
 //     1) increase brightness
     void brightnessUp(int currentBrightnessLevel);
+
 //     2) change contrast
     void adjustContrast(Screen screenContrast);
+
 //     3) switch aspect ratio
     int screenRatioSwitch(Screen screenRatio); // NOTE: return value provides back the current state of the switch.
+};
 
 
 /*
@@ -1233,7 +1118,7 @@ struct CPU
     int cacheSize = 200;
     int ramSize = 16;
     std::string architectureType = "x86_64";
-};
+
 // 3 things it can do:
 //     1) Save data
     int saveSelectedData(int selectedData); // NOTE: returns a flag to indicate save was successful.
@@ -1243,6 +1128,8 @@ struct CPU
 
 //     3) Access data
     void openDataFile(std::string fileName);
+};
+
 
 /*
 Thing 7) GPU
@@ -1265,7 +1152,7 @@ struct GPU
     int processorSpeed = 320;
     int numberOfInputOutputStreams = 6;
     int fanSpeed = 12.f;
-};
+
 // 3 things it can do:
 //     1) Increase ventilation amount
     void fansOn(GPU gpuFans);
@@ -1275,6 +1162,7 @@ struct GPU
 
 //     3) Overlock processing speed
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu); // NOTE: returns overlocking amount as a value.
+};
 
 
 /*
@@ -1298,7 +1186,7 @@ struct Memory
     float dataRate = 18.5f;
     double seekTime = 46.889;
     std::string ramType = "DRAM";
-};
+
 // 3 things it can do:
 //     1) write data
     int writeDataToMemory(Memory memoryDataSource); // NOTE: returns a value to signify successful writing to memory.
@@ -1308,6 +1196,7 @@ struct Memory
 
 //     3) erase data
     void deleteData(std::string selectedData);
+};
 
 
 /*
@@ -1331,7 +1220,7 @@ struct UsbPort
     std::string connectorType = "USB-C";
     int powerOutput = 20;
     std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
-};
+
 // 3 things it can do:
 //     1) connect external devices
     int connectingDevice(UsbPort usbInput); // NOTE: returns a value indicating successful or failed connection.
@@ -1341,6 +1230,7 @@ struct UsbPort
 
 //     3) charge devices
     bool chargingConnectedDevice(UsbPort usbConnected); // NOTE: returns a bool value to cause system to display positive LED charging light.
+};
 
 
 /*
@@ -1364,7 +1254,7 @@ struct GamingLaptop
     GPU gpu;
     Memory memory;
     UsbPort usbport;
-};
+
 // 3 things it can do:
 //     1) Load a game.
     void loadingGame(std::string gameApplicationToOpen);
@@ -1374,6 +1264,8 @@ struct GamingLaptop
 
 //     3) Display image.
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
+};
+
 
 int main()
 {
