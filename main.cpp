@@ -381,6 +381,38 @@ struct Dictaphone
     std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
 };
 
+void Dictaphone::exportAudioFile(float audioData)
+{
+    if(audioData != 0.f)
+    {
+        std::cout << "Exporting file...";
+    }
+    else
+    {
+        std::cout << "Error! No data to export...";
+    }
+}
+
+void Dictaphone::recordingOn(bool activeRecording)
+{
+    if(activeRecording)
+    {
+        int led = 1;
+        std::cout << led;
+    }
+    else
+    {
+        int led = 0;
+        std::cout << led;
+    }
+}
+
+std::string Dictaphone::displayAvailableSpace(Dictaphone dictaphoneStorage)
+{
+    std::string spaceAvail = dictaphoneStorage.displayStorageAmount;
+    return spaceAvail;
+}
+
 struct Screen
 {
     int numberOfPixels = 500;
@@ -393,6 +425,23 @@ struct Screen
     void adjustContrast(Screen screenContrast);
     int screenRatioSwitch(Screen screenRatio);
 };
+
+void Screen::brightnessUp(int currentBrightnessLevel)
+{
+    int turnUpBrightness = currentBrightnessLevel * 2;
+    std::cout << "Brightness increased to: " << turnUpBrightness;
+}
+
+void Screen::adjustContrast(Screen screenContrast)
+{
+    int changeContrast = screenContrast.numberOfPixels * screenContrast.resolution * screenContrast.aspectRatio;
+    std::cout << "Contrast increased to: " << changeContrast;
+}
+
+int Screen::screenRatioSwitch(Screen screenRatio)
+{
+    return screenRatio.aspectRatio * screenRatio.resolution;
+}
 
 struct CPU
 {
@@ -407,18 +456,72 @@ struct CPU
     void openDataFile(std::string fileName);
 };
 
+int CPU::saveSelectedData(int selectedData)
+{
+    int savedCode = memoryManagementAmount - selectedData;
+    return savedCode;
+}
+
+void CPU::interpolateData(CPU cpuDataStream)
+{
+    std::string fileForInterpolation = "file1";
+    cpuDataStream.openDataFile(fileForInterpolation);
+    std::cout << "current cache: " << cpuDataStream.cacheSize;
+}
+
+void CPU::openDataFile(std::string fileName)
+{
+    std::cout << "Select file for opening.../n";
+    std::cin >> fileName;
+}
+
 struct GPU
 {
     int clockSpeed = 2400;
     int memoryBusSize = 1400;
     int processorSpeed = 320;
     int numberOfInputOutputStreams = 6;
-    int fanSpeed = 12.f;
+    int fanSpeed = 12;
 
     void fansOn(GPU gpuFans);
     void graphicsRendering(GPU gpu);
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
 };
+
+void GPU::fansOn(GPU gpuFans)
+{
+    if(gpuFans.fanSpeed < 0)
+    {
+        std::cout << "Fans enabled";
+    }
+    else
+    {
+        std::cout << "Fans active";
+    }
+}
+
+void GPU::graphicsRendering(GPU gpu)
+{
+    while(gpu.processorSpeed > 120)
+        {
+            // render graphics
+        }
+}
+
+float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu)
+{
+    if(gpu.clockSpeed <= 2400)
+    {
+        int adjustClock = currentProcessorSpeed + inputClockSpeed;
+        std::cout << "Increased clock speed by " << adjustClock;
+        return 3400.f;
+    }
+    else
+    {
+        std::cout << "Error";
+        return 2400.f;
+    }
+}
 
 struct Memory
 {
@@ -433,6 +536,27 @@ struct Memory
     void deleteData(std::string selectedData);
 };
 
+int Memory::writeDataToMemory(Memory memoryDataSource)
+{
+    capacitySize = memoryDataSource.capacitySize;
+    storageType = memoryDataSource.storageType;
+    dataRate = memoryDataSource.dataRate;
+    seekTime = memoryDataSource.seekTime;
+    ramType = memoryDataSource.ramType;
+
+    return 0;
+}
+
+void Memory::openDataLocation(Memory memoryAddress)
+{
+    std::cout << "Opening data location: " << memoryAddress.capacitySize << std::endl;
+}
+
+void Memory::deleteData(std::string selectedData)
+{
+    std::cout << "Deleted data: " << selectedData << std::endl;
+}
+
 struct UsbPort
 {
     float dataTransferSpeed = 16.8f;
@@ -446,6 +570,43 @@ struct UsbPort
     bool chargingConnectedDevice(UsbPort usbConnected);
 };
 
+int UsbPort::connectingDevice(UsbPort usbInput)
+{
+    if (usbInput.connectorType == connectorType)
+    {
+        std::cout << "USB device successfully connected." << std::endl;
+
+        return 0;
+    }
+    else
+    {
+        std::cout << "Incompatible connector types. Failed to connect USB device." << std::endl;
+        
+        return 1;
+    }
+}
+
+void UsbPort::fileTransferring(std::string fileToSend)
+{
+    std::cout << "File being transfered: " << fileToSend;
+    if(powerOutput < 10)
+    {
+        std::cout << "Error, underpowered port for transfer";
+    }
+}
+
+bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
+{
+    if(usbConnected.backwardCompatibility == "USB 3.0 and USB 2.0 compatible")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 struct GamingLaptop
 {
     Screen screen;
@@ -458,6 +619,40 @@ struct GamingLaptop
     int connectingDevice(std::string deviceName);
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
 };
+
+void GamingLaptop::loadingGame(std::string gameApplicationToOpen)
+{
+    std::cout << "Select application";
+    std::cin >> gameApplicationToOpen;
+    memory.openDataLocation(memory);
+    cpu.openDataFile("fileName");
+    gpu.graphicsRendering(gpu);
+    screen.screenRatioSwitch(screen);
+}
+
+int GamingLaptop::connectingDevice(std::string deviceName)
+{
+    usbport.connectorType = deviceName;
+    bool isCharging = usbport.chargingConnectedDevice(usbport);
+    int memoryAmount = cpu.memoryManagementAmount;
+
+    if(isCharging && memoryAmount > 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+void GamingLaptop::displayingToScreen(GamingLaptop gamingLaptopDisplay)
+{
+    std::cout << "Displaying gaming laptop information:" << "/n";
+    std::cout << "Screen resolution: " << gamingLaptopDisplay.screen.resolution << "/n";
+    std::cout << "CPU clock speed: " << gamingLaptopDisplay.cpu.processorClockSpeed << "/n";
+    std::cout << "GPU memory: " << gamingLaptopDisplay.gpu.memoryBusSize << "/n";
+}
 
 int main()
 {
