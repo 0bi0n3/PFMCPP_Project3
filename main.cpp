@@ -273,6 +273,24 @@ struct MidiKeyboard
     float padHitAmount(MidiKeyboard padNumber);
 };
 
+double MidiKeyboard::adjustPitch(MidiKeyboard pitchChange)
+{    
+    double adjustedPitch = pitchControlRange + pitchChange.pitchControlRange;
+
+    return adjustedPitch;
+}
+
+void MidiKeyboard::isKeyPressed()
+{
+    std::cout << "Key input detected/n";
+}
+
+float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
+{
+    std::cout << padNumber.numberOfMPCPads;
+    return 10.f;
+}
+
 struct RolandTB303
 {
     int stepSequencer = 16;
