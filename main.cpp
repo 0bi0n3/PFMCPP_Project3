@@ -183,14 +183,7 @@ struct Castle
         bool isInDrought = false;
 
         void sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell);
-        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice)
-        {
-            int workForceOverArea = totalWorkers + farmlandArea / 2;
-            std::cout << "Workforce turnover per acre: " << workForceOverArea << std::endl;
-            float marketEstimation = currentMarketPrice - previousMarketPrice * 0.2f;
-            
-            return marketEstimation;
-        }
+        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice);
         void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
     };
 
@@ -217,6 +210,28 @@ void Castle::FarmlandRevenue::sellWheat(int wheatStockLevel, float currentMarket
     }
 }
 
+float Castle::FarmlandRevenue::displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice)
+{
+    int workForceOverArea = totalWorkers + farmlandArea / 2;
+    std::cout << "Workforce turnover per acre: " << workForceOverArea << std::endl;
+    float marketEstimation = currentMarketPrice - previousMarketPrice * 0.2f;
+            
+    return marketEstimation;
+}
+
+void Castle::FarmlandRevenue::floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought)
+{
+    if(isIndrought)
+    {
+        std::cout << "Select area to flood" << areaToFlood << "/n";
+        std::cout << "Adjust flood level" << amountOfFlooding << "/n";       
+    }
+    else
+    {
+        std::cout << "Flooding not required/n";
+    }
+}
+
 float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome)
 {
     float taxTotalIncome = 0.f;
@@ -224,6 +239,25 @@ float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandInc
     float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
     
     return taxTotalIncome = currentlyTaxed + produceTax;
+}
+
+void Castle::openCastleGates(int numberOfGatesClosed)
+{
+    if (numberOfGatesClosed <= 0)
+    {
+        std::cout << "All gates are already open./n";
+    }
+    else
+    {
+        std::cout << "Opening " << numberOfGatesClosed << " gates.../n";
+        std::cout << "Gates opened successfully!/n";
+    }
+}
+
+std::string Castle::announceOrders(std::string orders)
+{
+    std::cout << "Here are the orders: " << orders << "/n";
+    return orders;
 }
 
 struct MidiKeyboard
