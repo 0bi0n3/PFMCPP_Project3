@@ -319,6 +319,55 @@ struct RolandTB303
     float tempoAdjust(RolandTB303 tempo);
 };
 
+void RolandTB303::SavePattern::savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo)
+{
+    int savedSeq = stepSize + numberOfStepsEnabled + numberOfLoops + tempo;
+    std::cout << "Saving sequence.../n" << savedSeq;
+}
+
+bool RolandTB303::SavePattern::savingToExternal(int stepCount, std::string fileType)
+{
+    if(stepCount > 0)
+    {
+        std::cout << "Exporting " << fileType;
+        return true;
+    }
+    else
+    {
+        std::cout << "Export error, no steps";
+        return false;
+    }
+}
+
+void RolandTB303::SavePattern::displaySavingProgress(int timeRemaining, float savingRate)
+{
+    std::cout << "Time remaining: " << timeRemaining << "/n";
+    std::cout << "saving data speed: " << savingRate;
+}
+
+void RolandTB303::programSequence(RolandTB303 sequence)
+{
+    int displaySequenceCount = sequence.stepSequencer;
+    std::cout << "Number of steps: " << displaySequenceCount;
+}
+
+void RolandTB303::filterSignal(float cutoffFrequency)
+{
+    std::cout << "Filter CutOff: " << cutoffFrequency;
+}
+
+float RolandTB303::tempoAdjust(RolandTB303 tempo)
+{    
+    if (tempo.tempoDial > 0)
+    {
+        return 15.f;
+    }
+    else
+    {
+        return 1.f;
+    }
+}
+
 struct Dictaphone
 {
     int recordButton = 3;
