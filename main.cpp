@@ -108,9 +108,44 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Person
+{
+    int age = 0;
+    int heightInches = 0;
+    float hairLength = 0.f;
+    float GPA = 0.f;
+    unsigned int SATScore = 0;
+    int distanceTraveled = 0;
+    
+    void run(int howFast, bool startWithLeftFoot);
 
+    struct Foot
+    {
+        int stepSize() { return 0; }
+        void stepForward(int speed) 
+        {
+            int distance = speed * 2;
+            std::cout << "Foot stepped forward by distance: " << distance << std::endl;
+        }
+    };
+    Foot leftFoot, rightFoot;
+};
 
-
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot)
+    {
+        leftFoot.stepForward(howFast);
+        rightFoot.stepForward(howFast);
+    }
+    else
+    {
+        rightFoot.stepForward(howFast);
+        leftFoot.stepForward(howFast);
+    }
+    
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -147,8 +182,15 @@ struct Castle
         std::string type = "Cereals and Grains";
         bool isInDrought = false;
 
-        void sellWheat(int wheatStockLevel, float currentMarketPrice, int amountToSell);
-        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice);
+        void sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell);
+        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice)
+        {
+            int workForceOverArea = totalWorkers + farmlandArea / 2;
+            std::cout << "Workforce turnover per acre: " << workForceOverArea << std::endl;
+            float marketEstimation = currentMarketPrice - previousMarketPrice * 0.2f;
+            
+            return marketEstimation;
+        }
         void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
     };
 
@@ -158,6 +200,31 @@ struct Castle
 
     FarmlandRevenue agricultureWorth;
 };
+
+void Castle::FarmlandRevenue::sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell)
+{
+    int availableStock = wheatStockLevel - 100;
+    if (availableStock < 100)
+    {
+        std::cout << "Stock levels too low/n";
+    }
+    else
+    {
+        std::cout << "Stock levels OK/n";
+        std::cout << "Market price: " << currentMarketPrice << "/n";
+        float estimatedSale = currentMarketPrice * amountToSell;
+        std::cout << "Expected sale price: " << estimatedSale << "/n";
+    }
+}
+
+float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome)
+{
+    float taxTotalIncome = 0.f;
+    float currentlyTaxed = collectTaxes * 20;
+    float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
+    
+    return taxTotalIncome = currentlyTaxed + produceTax;
+}
 
 struct MidiKeyboard
 {
