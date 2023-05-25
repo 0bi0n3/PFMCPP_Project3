@@ -332,11 +332,8 @@ bool RolandTB303::SavePattern::savingToExternal(int stepCount, std::string fileT
         std::cout << "Exporting " << fileType;
         return true;
     }
-    else
-    {
-        std::cout << "Export error, no steps";
-        return false;
-    }
+    std::cout << "Export error, no steps";
+    return false;
 }
 
 void RolandTB303::SavePattern::displaySavingProgress(int timeRemaining, float savingRate)
@@ -362,10 +359,7 @@ float RolandTB303::tempoAdjust(RolandTB303 tempo)
     {
         return 15.f;
     }
-    else
-    {
-        return 1.f;
-    }
+    return 1.f;
 }
 
 struct Dictaphone
@@ -472,7 +466,7 @@ void CPU::interpolateData(CPU cpuDataStream)
 void CPU::openDataFile(std::string fileName)
 {
     std::cout << "Select file for opening.../n";
-    std::cin >> fileName;
+    std::cout << "File selected: " << fileName;
 }
 
 struct GPU
@@ -503,9 +497,9 @@ void GPU::fansOn(GPU gpuFans)
 void GPU::graphicsRendering(GPU gpu)
 {
     while(gpu.processorSpeed > 120)
-        {
-            // render graphics
-        }
+    {
+        // render graphics
+    }
 }
 
 float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu)
@@ -516,11 +510,8 @@ float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, 
         std::cout << "Increased clock speed by " << adjustClock;
         return 3400.f;
     }
-    else
-    {
-        std::cout << "Error";
-        return 2400.f;
-    }
+    std::cout << "Error";
+    return 2400.f;
 }
 
 struct Memory
@@ -575,15 +566,10 @@ int UsbPort::connectingDevice(UsbPort usbInput)
     if (usbInput.connectorType == connectorType)
     {
         std::cout << "USB device successfully connected." << std::endl;
-
         return 0;
     }
-    else
-    {
-        std::cout << "Incompatible connector types. Failed to connect USB device." << std::endl;
-        
-        return 1;
-    }
+    std::cout << "Incompatible connector types. Failed to connect USB device." << std::endl;
+    return 1;
 }
 
 void UsbPort::fileTransferring(std::string fileToSend)
@@ -601,10 +587,7 @@ bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 struct GamingLaptop
@@ -623,7 +606,7 @@ struct GamingLaptop
 void GamingLaptop::loadingGame(std::string gameApplicationToOpen)
 {
     std::cout << "Select application";
-    std::cin >> gameApplicationToOpen;
+    cpu.openDataFile(gameApplicationToOpen);
     memory.openDataLocation(memory);
     cpu.openDataFile("fileName");
     gpu.graphicsRendering(gpu);
@@ -640,10 +623,7 @@ int GamingLaptop::connectingDevice(std::string deviceName)
     {
         return 0;
     }
-    else
-    {
-        return 1;
-    }
+    return 1;
 }
 
 void GamingLaptop::displayingToScreen(GamingLaptop gamingLaptopDisplay)
