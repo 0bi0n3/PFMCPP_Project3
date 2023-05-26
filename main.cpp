@@ -288,7 +288,7 @@ void RolandTB303::programSequence(RolandTB303 sequence)
 
 void RolandTB303::filterSignal(float cutoffFrequency)
 {
-    std::cout << "Filter CutOff: " << cutoffFrequency << " Hz\n";
+    std::cout << "Filter CutOff: " << cutoffFrequency << "Hz\n";
 }
 
 float RolandTB303::tempoAdjust(RolandTB303 tempo)
@@ -633,44 +633,55 @@ int main()
     Castle castle;
     //1
     castle.announceOrders("Release the hounds!");
+    std::cout << "names of royalty: " << castle.nameOfKing << " & " << castle.nameOfQueen << "\n";
 
     //2
     castle.openCastleGates(4);
+    std::cout << "total gates at castle: " << castle.numberOfGates << "\n";
 
     //3
     castle.reportCollectTaxes(10.f, Castle::FarmlandRevenue());
-    
+    std::cout << "tax collected: " << castle.amountOfTaxesCollected << "\n";
+        
     //-------------------
     Castle::FarmlandRevenue farmlandrev;
 
     //1
     farmlandrev.displayCurrentTurnover(30, 66, 12.f, 8.f);
+    std::cout << "Current wholesale price of wheat per kg: " << farmlandrev.wheatSalePricePerKG << "\n";
     //2
     farmlandrev.floodFarmlands(150, 23.f, true);
+    std::cout << "Is the farmland in drought? 0 = no, 1 = yes: " << farmlandrev.isInDrought << "\n";
     //3
     farmlandrev.sellWheat(500, 21.f, 180.f);
+    std::cout << "Current number of able workers: " << farmlandrev.numberOfWorkers << "\n";
 
     //-------------------
     MidiKeyboard midikeyboard;
 
     //1
     midikeyboard.adjustPitch(MidiKeyboard());
+    std::cout << "List number of keys: " << midikeyboard.numberOfKeys << "\n";
     //2
     midikeyboard.isKeyPressed();
+    std::cout << "Available pitch control range: " << midikeyboard.pitchControlRange << "\n";
     //3
     midikeyboard.padHitAmount(MidiKeyboard());
+    std::cout << "Programmable pads: " << midikeyboard.numberOfMPCPads << "\n";
     
     //-------------------
     RolandTB303 rolandtb303;
 
     //1
     rolandtb303.filterSignal(3500.f);
+    std::cout << "Volume level: " << rolandtb303.volumeKnob << "\n";
 
     //2
     rolandtb303.programSequence(RolandTB303());
+    
     //3
     rolandtb303.tempoAdjust(RolandTB303());
-
+    
     //-------------------
     RolandTB303::SavePattern savepattern;
 
@@ -707,7 +718,8 @@ int main()
     screen.brightnessUp(15);
 
     //3
-    screen.screenRatioSwitch(Screen());
+    int screenRatioResult = screen.screenRatioSwitch(Screen());
+    std::cout << "Screen switch complete, total pixels used: " << screenRatioResult << "\n";
 
     //-------------------
     GPU gpu;
@@ -719,7 +731,8 @@ int main()
     gpu.graphicsRendering(GPU());
     
     //3
-    gpu.processorOverlocking(20, 288, GPU());
+    float currentProcessorSpeed = gpu.processorOverlocking(20, 288, GPU());
+    std::cout << "Current processor speed: " << currentProcessorSpeed << "Hz\n";
     
     //-------------------
     CPU cpu;
@@ -743,7 +756,8 @@ int main()
     memory.openDataLocation(Memory());
 
     //3
-    memory.writeDataToMemory(Memory());
+    int memoryResult = memory.writeDataToMemory(Memory());
+    std::cout << "Memory written total: " << memoryResult << "\n";
     
     //-------------------
     UsbPort usbport;
@@ -752,8 +766,9 @@ int main()
     usbport.chargingConnectedDevice(UsbPort());
 
     //2
-    usbport.connectingDevice(UsbPort());
-
+    bool usbResult = usbport.connectingDevice(UsbPort());
+    std::cout << "USB connecting device secure (0 = yes, 1 = no): " << usbResult << "\n";
+    
     //3
     usbport.fileTransferring("Send me to the moon plz");
 
@@ -768,6 +783,7 @@ int main()
 
     //3
     gaminglaptop.loadingGame("Quake 3");
+    
    
     
 
