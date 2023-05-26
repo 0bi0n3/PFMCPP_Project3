@@ -150,6 +150,8 @@ float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandInc
     float taxTotalIncome = 0.f;
     float currentlyTaxed = collectTaxes * 20;
     float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
+
+    std::cout << "Reporting tax collection!\n";
     
     return taxTotalIncome = currentlyTaxed + produceTax;
 }
@@ -196,6 +198,8 @@ double MidiKeyboard::adjustPitch(MidiKeyboard pitchChange)
 {    
     double adjustedPitch = pitchControlRange + pitchChange.pitchControlRange;
 
+    std::cout << "Pitch adjusting!\n";
+
     return adjustedPitch;
 }
 
@@ -207,6 +211,7 @@ void MidiKeyboard::isKeyPressed()
 float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
 {
     std::cout << padNumber.numberOfMPCPads;
+    std::cout << "BOY you hitting that pad haaaaard\n";
     return 10.f;
 }
 
@@ -282,8 +287,10 @@ float RolandTB303::tempoAdjust(RolandTB303 tempo)
 {    
     if (tempo.tempoDial > 0)
     {
+        std::cout << "Tempo has been changed\n";
         return 15.f;
     }
+    std::cout << "No tempo changes here...\n";
     return 1.f;
 }
 
@@ -323,18 +330,19 @@ void Dictaphone::recordingOn(bool activeRecording)
     if(activeRecording)
     {
         int led = 1;
-        std::cout << led;
+        std::cout << "led on: " << led << "\n";
     }
     else
     {
         int led = 0;
-        std::cout << led;
+        std::cout << "led off: " << led << "\n";
     }
 }
 
 std::string Dictaphone::displayAvailableSpace(Dictaphone dictaphoneStorage)
 {
     std::string spaceAvail = dictaphoneStorage.displayStorageAmount;
+    std::cout << "Memory space available: " << spaceAvail << "\n";
     return spaceAvail;
 }
 
@@ -371,6 +379,7 @@ void Screen::adjustContrast(Screen screenContrast)
 
 int Screen::screenRatioSwitch(Screen screenRatio)
 {
+    std::cout << "Ratio changing, hold tight\n";
     return screenRatio.aspectRatio * screenRatio.resolution;
 }
 
@@ -396,6 +405,7 @@ CPU::CPU()
 int CPU::saveSelectedData(int selectedData)
 {
     int savedCode = memoryManagementAmount - selectedData;
+    std::cout << "Saving: " << savedCode << "\n";
     return savedCode;
 }
 
@@ -448,6 +458,7 @@ void GPU::graphicsRendering(GPU gpu)
     while(gpu.processorSpeed > 120)
     {
         // render graphics
+        std::cout << "Shaders loading... not long now\n";
     }
 }
 
@@ -490,6 +501,7 @@ int Memory::writeDataToMemory(Memory memoryDataSource)
     seekTime = memoryDataSource.seekTime;
     ramType = memoryDataSource.ramType;
 
+    std::cout << "Listing data details: " << capacitySize << "\n" << storageType << "\n" << dataRate << "\n" << seekTime << "\n" << ramType << "\n";
     return 0;
 }
 
@@ -546,8 +558,10 @@ bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
 {
     if(usbConnected.backwardCompatibility == "USB 3.0 and USB 2.0 compatible")
     {
+        std::cout << "Congrats! This USB is still relevant\n";
         return true;
     }
+    std::cout << "We are sorry to say, your stick is old\n";
     return false;
 }
 
@@ -585,11 +599,13 @@ int GamingLaptop::connectingDevice(std::string deviceName)
     usbport.connectorType = deviceName;
     bool isCharging = usbport.chargingConnectedDevice(usbport);
     int memoryAmount = cpu.memoryManagementAmount;
-
+    
     if(isCharging && memoryAmount > 0)
     {
+        std::cout << "Charging in progress\n";
         return 0;
     }
+    std::cout << "Error with charging, please check connection\n";
     return 1;
 }
 
