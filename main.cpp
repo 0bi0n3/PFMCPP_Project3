@@ -84,6 +84,7 @@ struct Castle
 
     struct FarmlandRevenue
     {
+        FarmlandRevenue();
         int arces = 65;
         int numberOfWorkers = 120;
         float wheatSalePricePerKG = 1.8f;
@@ -98,13 +99,16 @@ struct Castle
     float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome);
     void openCastleGates(int numberOfGatesClosed);
     std::string announceOrders(std::string orders);
-
-    FarmlandRevenue agricultureWorth;
 };
 
 Castle::Castle()
 {
     std::cout << "Castle being constructed!\n";  
+}
+
+Castle::FarmlandRevenue::FarmlandRevenue()
+{
+    std::cout << "FarmlandRevenue being constructed!\n";
 }
 
 void Castle::FarmlandRevenue::sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell)
@@ -226,6 +230,7 @@ struct RolandTB303
 
     struct SavePattern
     {
+        SavePattern();
         int numberOfSteps = 16;
         int tempoNumberSelected = 10;
         int loopCount = 4;
@@ -237,8 +242,6 @@ struct RolandTB303
         void displaySavingProgress(int timeRemaining, float savingRate);
     };
 
-    SavePattern save;
-
     void programSequence(RolandTB303 sequence);
     void filterSignal(float cutoffFrequency);
     float tempoAdjust(RolandTB303 tempo);
@@ -247,6 +250,11 @@ struct RolandTB303
 RolandTB303::RolandTB303()
 {
     std::cout << "RolandTB303 being constructed!\n";  
+}
+
+RolandTB303::SavePattern::SavePattern()
+{
+    std::cout << "SavePattern being constructed!\n";
 }
 
 void RolandTB303::SavePattern::savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo)
@@ -621,8 +629,10 @@ int main()
 {
     Example::main();
     Castle castle;
+    Castle::FarmlandRevenue farmlandrev;
     MidiKeyboard midikeyboard;
     RolandTB303 rolandtb303;
+    RolandTB303::SavePattern savepattern;
     Dictaphone dictaphone;
     Screen screen;
     GPU gpu;
@@ -630,6 +640,7 @@ int main()
     Memory memory;
     UsbPort usbport;
     GamingLaptop gaminglaptop;
+
     
     
                   
