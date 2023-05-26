@@ -108,9 +108,44 @@ struct CarWash
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Person
+{
+    int age = 0;
+    int heightInches = 0;
+    float hairLength = 0.f;
+    float GPA = 0.f;
+    unsigned int SATScore = 0;
+    int distanceTraveled = 0;
+    
+    void run(int howFast, bool startWithLeftFoot);
 
+    struct Foot
+    {
+        int stepSize() { return 0; }
+        void stepForward(int speed) 
+        {
+            int distance = speed * 2;
+            std::cout << "Foot stepped forward by distance: " << distance << std::endl;
+        }
+    };
+    Foot leftFoot, rightFoot;
+};
 
-
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot)
+    {
+        leftFoot.stepForward(howFast);
+        rightFoot.stepForward(howFast);
+    }
+    else
+    {
+        rightFoot.stepForward(howFast);
+        leftFoot.stepForward(howFast);
+    }
+    
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -131,63 +166,139 @@ struct CarWash
  This usually means you have to use identical types for all variables used in an expression that is producing that conversion warning.
  */
 
+struct Castle
+{
+    int numberOfGates = 8;
+    std::string nameOfKing = "Edward";
+    std::string nameOfQueen = "Magda";
+    float amountOfTaxesCollected = 349.77f;
+    bool isAtWar = false;
 
-/*
-Thing 2) MIDI Keyboard
-5 properties:
-    1) number of keys (int)
-    2) number of knobs (int)
-    3) number of MPC pads (int)
-    4) pitch control range (double)
-    5) mode selection (char)
-3 things it can do:
-    1) adjust pitch.
-    2) register key presses.
-    3) register pad hit velocities.
-*/
+    struct FarmlandRevenue
+    {
+        int arces = 65;
+        int numberOfWorkers = 120;
+        float wheatSalePricePerKG = 1.8f;
+        std::string type = "Cereals and Grains";
+        bool isInDrought = false;
+
+        void sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell);
+        float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice);
+        void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
+    };
+
+    float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome);
+    void openCastleGates(int numberOfGatesClosed);
+    std::string announceOrders(std::string orders);
+
+    FarmlandRevenue agricultureWorth;
+};
+
+void Castle::FarmlandRevenue::sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell)
+{
+    int availableStock = wheatStockLevel - 100;
+    if (availableStock < 100)
+    {
+        std::cout << "Stock levels too low/n";
+    }
+    else
+    {
+        std::cout << "Stock levels OK/n";
+        std::cout << "Market price: " << currentMarketPrice << "/n";
+        float estimatedSale = currentMarketPrice * amountToSell;
+        std::cout << "Expected sale price: " << estimatedSale << "/n";
+    }
+}
+
+float Castle::FarmlandRevenue::displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice)
+{
+    int workForceOverArea = totalWorkers + farmlandArea / 2;
+    std::cout << "Workforce turnover per acre: " << workForceOverArea << std::endl;
+    float marketEstimation = currentMarketPrice - previousMarketPrice * 0.2f;
+            
+    return marketEstimation;
+}
+
+void Castle::FarmlandRevenue::floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought)
+{
+    if(isIndrought)
+    {
+        std::cout << "Select area to flood" << areaToFlood << "/n";
+        std::cout << "Adjust flood level" << amountOfFlooding << "/n";       
+    }
+    else
+    {
+        std::cout << "Flooding not required/n";
+    }
+}
+
+float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome)
+{
+    float taxTotalIncome = 0.f;
+    float currentlyTaxed = collectTaxes * 20;
+    float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
+    
+    return taxTotalIncome = currentlyTaxed + produceTax;
+}
+
+void Castle::openCastleGates(int numberOfGatesClosed)
+{
+    if (numberOfGatesClosed <= 0)
+    {
+        std::cout << "All gates are already open./n";
+    }
+    else
+    {
+        std::cout << "Opening " << numberOfGatesClosed << " gates.../n";
+        std::cout << "Gates opened successfully!/n";
+    }
+}
+
+std::string Castle::announceOrders(std::string orders)
+{
+    std::cout << "Here are the orders: " << orders << "/n";
+    return orders;
+}
+
 struct MidiKeyboard
 {
-// 5 properties:
     int numberOfKeys = 49;
     int numberOfKnobs = 12;
     int numberOfMPCPads = 8;
     double pitchControlRange = 200000.0;
     char modeSelection = 'X';
 
-// 3 things it can do:
-//     1) adjust pitch.
-    double adjustPitch(MidiKeyboard pitchChange); // NOTE: the pitch control effects the adjustment of the functions return value.
-//     2) register key presses.
+    double adjustPitch(MidiKeyboard pitchChange);
     void isKeyPressed();
-
-//     3) register pad hit velocities.
-    float padHitAmount(MidiKeyboard padNumber); // NOTE: returns a relevant value able to influence other fuctions.
+    float padHitAmount(MidiKeyboard padNumber);
 };
 
+double MidiKeyboard::adjustPitch(MidiKeyboard pitchChange)
+{    
+    double adjustedPitch = pitchControlRange + pitchChange.pitchControlRange;
 
-/*
-Thing 3) Roland TB-303
-5 properties:
-    1) step-sequencer (int)
-    2) mode dial (int)
-    3) tempo dial (int)
-    4) cutoff frequency filter knob (float)
-    5) volume knob (float)
-3 things it can do:
-    1) program sequence of notes.
-    2) apply filtering.
-    3) increase || decrease playback tempo.
-*/
+    return adjustedPitch;
+}
+
+void MidiKeyboard::isKeyPressed()
+{
+    std::cout << "Key input detected/n";
+}
+
+float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
+{
+    std::cout << padNumber.numberOfMPCPads;
+    return 10.f;
+}
+
 struct RolandTB303
 {
-// 5 properties:
     int stepSequencer = 16;
     int modeDial = 10;
     int tempoDial = 32;
     float cutoffFrequencyFilterKnob = 750.f;
     float volumeKnob = 96.f;
 
-    // NESTED UDT
     struct SavePattern
     {
         int numberOfSteps = 16;
@@ -197,261 +308,331 @@ struct RolandTB303
         float randomisationAmount = 4.f;
 
         void savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo);
-
-        bool savingToExternal(int stepCount, std::string fileType = "TB303.p"); // NOTE: function checks whether external device is selected for export.
-
+        bool savingToExternal(int stepCount, std::string fileType = "TB303.p");
         void displaySavingProgress(int timeRemaining, float savingRate);
     };
 
     SavePattern save;
 
-// 3 things it can do:
-//     1) program sequence of notes.
     void programSequence(RolandTB303 sequence);
-
-//     2) apply filtering.
     void filterSignal(float cutoffFrequency);
-
-//     3) increase || decrease playback tempo.
-    float tempoAdjust(RolandTB303 tempo); // NOTE: returns value relating to amount of temp adjustment.
+    float tempoAdjust(RolandTB303 tempo);
 };
 
+void RolandTB303::SavePattern::savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo)
+{
+    int savedSeq = stepSize + numberOfStepsEnabled + numberOfLoops + tempo;
+    std::cout << "Saving sequence.../n" << savedSeq;
+}
 
-/*
-Thing 4) Dictaphone
-5 properties:
-    1) record button (int)
-    2) play button (int)
-    3) adjust microphone sensitivity (double)
-    4) display storage amount (std::string)
-    5) data output port (float)
-3 things it can do:
-    1) export audio files.
-    2) record audio files.
-    3) display recording space available.
-*/
+bool RolandTB303::SavePattern::savingToExternal(int stepCount, std::string fileType)
+{
+    if(stepCount > 0)
+    {
+        std::cout << "Exporting " << fileType;
+        return true;
+    }
+    std::cout << "Export error, no steps";
+    return false;
+}
+
+void RolandTB303::SavePattern::displaySavingProgress(int timeRemaining, float savingRate)
+{
+    std::cout << "Time remaining: " << timeRemaining << "/n";
+    std::cout << "saving data speed: " << savingRate;
+}
+
+void RolandTB303::programSequence(RolandTB303 sequence)
+{
+    int displaySequenceCount = sequence.stepSequencer;
+    std::cout << "Number of steps: " << displaySequenceCount;
+}
+
+void RolandTB303::filterSignal(float cutoffFrequency)
+{
+    std::cout << "Filter CutOff: " << cutoffFrequency;
+}
+
+float RolandTB303::tempoAdjust(RolandTB303 tempo)
+{    
+    if (tempo.tempoDial > 0)
+    {
+        return 15.f;
+    }
+    return 1.f;
+}
+
 struct Dictaphone
 {
-// 5 properties:
     int recordButton = 3;
     int playButton = 2;
     double adjustMicrophoneSensitivity = 10000.0;
     std::string displayStorageAmount = " 900MBs";
     float dataOutputPort = 76.f;
 
-// 3 things it can do:
-//     1) export audio files.
     void exportAudioFile(float audioData);
-//     2) record audio files.
     void recordingOn(bool activeRecording);
-//     3) display recording space available.
     std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
 };
 
+void Dictaphone::exportAudioFile(float audioData)
+{
+    if(audioData != 0.f)
+    {
+        std::cout << "Exporting file...";
+    }
+    else
+    {
+        std::cout << "Error! No data to export...";
+    }
+}
 
-/*
-Thing 5) Screen
-5 properties:
-    1) number of pixels (int)
-    2) refresh rate (int)
-    3) colour space (std::string)
-    4) aspect ratio (int)
-    5) resolution (int)
-3 things it can do:
-    1) increase brightness
-    2) change contrast
-    3) switch aspect ratio
-*/
+void Dictaphone::recordingOn(bool activeRecording)
+{
+    if(activeRecording)
+    {
+        int led = 1;
+        std::cout << led;
+    }
+    else
+    {
+        int led = 0;
+        std::cout << led;
+    }
+}
+
+std::string Dictaphone::displayAvailableSpace(Dictaphone dictaphoneStorage)
+{
+    std::string spaceAvail = dictaphoneStorage.displayStorageAmount;
+    return spaceAvail;
+}
+
 struct Screen
 {
-// 5 properties:
     int numberOfPixels = 500;
     int refreshRate = 144;
     std::string colourSpace = "RGB";
     int aspectRatio = 16 * 9;
     int resolution = 1080;
 
-// 3 things it can do:
-//     1) increase brightness
     void brightnessUp(int currentBrightnessLevel);
-
-//     2) change contrast
     void adjustContrast(Screen screenContrast);
-
-//     3) switch aspect ratio
-    int screenRatioSwitch(Screen screenRatio); // NOTE: return value provides back the current state of the switch.
+    int screenRatioSwitch(Screen screenRatio);
 };
 
+void Screen::brightnessUp(int currentBrightnessLevel)
+{
+    int turnUpBrightness = currentBrightnessLevel * 2;
+    std::cout << "Brightness increased to: " << turnUpBrightness;
+}
 
-/*
-Thing 6) CPU
-5 properties:
-    1) Processor clock speed (int)
-    2) Memory management amount (int)
-    3) Cache size (int)
-    4) RAM size (int)
-    5) Architecture type (std::string)
-3 things it can do:
-    1) Save data
-    2) Process data
-    3) Access data
-*/
+void Screen::adjustContrast(Screen screenContrast)
+{
+    int changeContrast = screenContrast.numberOfPixels * screenContrast.resolution * screenContrast.aspectRatio;
+    std::cout << "Contrast increased to: " << changeContrast;
+}
+
+int Screen::screenRatioSwitch(Screen screenRatio)
+{
+    return screenRatio.aspectRatio * screenRatio.resolution;
+}
+
 struct CPU
 {
-// 5 properties:
     int processorClockSpeed = 3500;
     int memoryManagementAmount = 480;
     int cacheSize = 200;
     int ramSize = 16;
     std::string architectureType = "x86_64";
 
-// 3 things it can do:
-//     1) Save data
-    int saveSelectedData(int selectedData); // NOTE: returns a flag to indicate save was successful.
-
-//     2) Process data
+    int saveSelectedData(int selectedData);
     void interpolateData(CPU cpuDataStream);
-
-//     3) Access data
     void openDataFile(std::string fileName);
 };
 
+int CPU::saveSelectedData(int selectedData)
+{
+    int savedCode = memoryManagementAmount - selectedData;
+    return savedCode;
+}
 
-/*
-Thing 7) GPU
-5 properties:
-    1) Clock speed (int)
-    2) Memory bus size (int)
-    3) Processor speed (int)
-    4) Number of input/output streams (int)
-    5) Fan speed (float)
-3 things it can do:
-    1) Increase ventilation amount
-    2) Render graphics
-    3) Overlock processing speed
-*/
+void CPU::interpolateData(CPU cpuDataStream)
+{
+    std::string fileForInterpolation = "file1";
+    cpuDataStream.openDataFile(fileForInterpolation);
+    std::cout << "current cache: " << cpuDataStream.cacheSize;
+}
+
+void CPU::openDataFile(std::string fileName)
+{
+    std::cout << "Select file for opening.../n";
+    std::cout << "File selected: " << fileName;
+}
+
 struct GPU
 {
-// 5 properties:
     int clockSpeed = 2400;
     int memoryBusSize = 1400;
     int processorSpeed = 320;
     int numberOfInputOutputStreams = 6;
-    int fanSpeed = 12.f;
+    int fanSpeed = 12;
 
-// 3 things it can do:
-//     1) Increase ventilation amount
     void fansOn(GPU gpuFans);
-
-//     2) Render graphics
     void graphicsRendering(GPU gpu);
-
-//     3) Overlock processing speed
-    float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu); // NOTE: returns overlocking amount as a value.
+    float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
 };
 
+void GPU::fansOn(GPU gpuFans)
+{
+    if(gpuFans.fanSpeed < 0)
+    {
+        std::cout << "Fans enabled";
+    }
+    else
+    {
+        std::cout << "Fans active";
+    }
+}
 
-/*
-Thing 8) Memory
-5 properties:
-    1) capacity size (int)
-    2) storage type (std::string)
-    3) data rate (float)
-    4) seek time (double)
-    5) RAM type (std::string)
-3 things it can do:
-    1) write data
-    2) read data
-    3) erase data
-*/
+void GPU::graphicsRendering(GPU gpu)
+{
+    while(gpu.processorSpeed > 120)
+    {
+        // render graphics
+    }
+}
+
+float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu)
+{
+    if(gpu.clockSpeed <= 2400)
+    {
+        int adjustClock = currentProcessorSpeed + inputClockSpeed;
+        std::cout << "Increased clock speed by " << adjustClock;
+        return 3400.f;
+    }
+    std::cout << "Error";
+    return 2400.f;
+}
+
 struct Memory
 {
-// 5 properties:
     int capacitySize = 256;
     std::string storageType = "SSD";
     float dataRate = 18.5f;
     double seekTime = 46.889;
     std::string ramType = "DRAM";
 
-// 3 things it can do:
-//     1) write data
-    int writeDataToMemory(Memory memoryDataSource); // NOTE: returns a value to signify successful writing to memory.
-
-//     2) read data
+    int writeDataToMemory(Memory memoryDataSource);
     void openDataLocation(Memory memoryaddress);
-
-//     3) erase data
     void deleteData(std::string selectedData);
 };
 
+int Memory::writeDataToMemory(Memory memoryDataSource)
+{
+    capacitySize = memoryDataSource.capacitySize;
+    storageType = memoryDataSource.storageType;
+    dataRate = memoryDataSource.dataRate;
+    seekTime = memoryDataSource.seekTime;
+    ramType = memoryDataSource.ramType;
 
-/*
-Thing 9) USB port
-5 properties:
-    1) data transfer speed (float)
-    2) number of ports (int)
-    3) connector type (std::string)
-    4) power output (int)
-    5) backward compatibility (std::string)
-3 things it can do:
-    1) connect external devices
-    2) transfer files
-    3) charge devices
-*/
+    return 0;
+}
+
+void Memory::openDataLocation(Memory memoryAddress)
+{
+    std::cout << "Opening data location: " << memoryAddress.capacitySize << std::endl;
+}
+
+void Memory::deleteData(std::string selectedData)
+{
+    std::cout << "Deleted data: " << selectedData << std::endl;
+}
+
 struct UsbPort
 {
-// 5 properties:
     float dataTransferSpeed = 16.8f;
     int numberOfPorts = 4;
     std::string connectorType = "USB-C";
     int powerOutput = 20;
     std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
 
-// 3 things it can do:
-//     1) connect external devices
-    int connectingDevice(UsbPort usbInput); // NOTE: returns a value indicating successful or failed connection.
-
-//     2) transfer files
+    int connectingDevice(UsbPort usbInput);
     void fileTransferring(std::string fileToSend);
-
-//     3) charge devices
-    bool chargingConnectedDevice(UsbPort usbConnected); // NOTE: returns a bool value to cause system to display positive LED charging light.
+    bool chargingConnectedDevice(UsbPort usbConnected);
 };
 
+int UsbPort::connectingDevice(UsbPort usbInput)
+{
+    if (usbInput.connectorType == connectorType)
+    {
+        std::cout << "USB device successfully connected." << std::endl;
+        return 0;
+    }
+    std::cout << "Incompatible connector types. Failed to connect USB device." << std::endl;
+    return 1;
+}
 
-/*
-Thing 10) Gaming Laptop
-5 properties:
-    1) screen.
-    2) CPU.
-    3) GPU.
-    4) Memory.
-    5) USB port.
-3 things it can do:
-    1) Load a game.
-    2) Connect peripherals.
-    3) Display image.
-*/
+void UsbPort::fileTransferring(std::string fileToSend)
+{
+    std::cout << "File being transfered: " << fileToSend;
+    if(powerOutput < 10)
+    {
+        std::cout << "Error, underpowered port for transfer";
+    }
+}
+
+bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
+{
+    if(usbConnected.backwardCompatibility == "USB 3.0 and USB 2.0 compatible")
+    {
+        return true;
+    }
+    return false;
+}
+
 struct GamingLaptop
 {
-// 5 properties:
     Screen screen;
     CPU cpu;
     GPU gpu;
     Memory memory;
     UsbPort usbport;
 
-// 3 things it can do:
-//     1) Load a game.
     void loadingGame(std::string gameApplicationToOpen);
-
-//     2) Connect peripherals.
-    int connectingDevice(std::string deviceName); // NOTE: returns a value to signify successful or failed connections.
-
-//     3) Display image.
+    int connectingDevice(std::string deviceName);
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
 };
 
+void GamingLaptop::loadingGame(std::string gameApplicationToOpen)
+{
+    std::cout << "Select application";
+    cpu.openDataFile(gameApplicationToOpen);
+    memory.openDataLocation(memory);
+    cpu.openDataFile("fileName");
+    gpu.graphicsRendering(gpu);
+    screen.screenRatioSwitch(screen);
+}
+
+int GamingLaptop::connectingDevice(std::string deviceName)
+{
+    usbport.connectorType = deviceName;
+    bool isCharging = usbport.chargingConnectedDevice(usbport);
+    int memoryAmount = cpu.memoryManagementAmount;
+
+    if(isCharging && memoryAmount > 0)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+void GamingLaptop::displayingToScreen(GamingLaptop gamingLaptopDisplay)
+{
+    std::cout << "Displaying gaming laptop information:" << "/n";
+    std::cout << "Screen resolution: " << gamingLaptopDisplay.screen.resolution << "/n";
+    std::cout << "CPU clock speed: " << gamingLaptopDisplay.cpu.processorClockSpeed << "/n";
+    std::cout << "GPU memory: " << gamingLaptopDisplay.gpu.memoryBusSize << "/n";
+}
 
 int main()
 {
