@@ -140,8 +140,8 @@ void Castle::FarmlandRevenue::floodFarmlands(int areaToFlood, float amountOfFloo
 {
     if(isIndrought)
     {
-        std::cout << "Select area to flood" << areaToFlood << "\n";
-        std::cout << "Adjust flood level" << amountOfFlooding << "\n";       
+        std::cout << "Select area to flood " << areaToFlood << "\n";
+        std::cout << "Adjust flood level " << amountOfFlooding << "\n";       
     }
     else
     {
@@ -155,7 +155,7 @@ float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandInc
     float currentlyTaxed = collectTaxes * 20;
     float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
 
-    std::cout << "Reporting tax collection!\n";
+    std::cout << "Reporting tax collection my lord!\n";
     
     return taxTotalIncome = currentlyTaxed + produceTax;
 }
@@ -214,8 +214,8 @@ void MidiKeyboard::isKeyPressed()
 
 float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
 {
-    std::cout << padNumber.numberOfMPCPads;
-    std::cout << "BOY you hitting that pad haaaaard\n";
+    std::cout << "Pad number: " <<padNumber.numberOfMPCPads << "\n";
+    std::cout << "BOY you hitting that pad haaaaard!!!\n";
     return 10.f;
 }
 
@@ -260,35 +260,35 @@ RolandTB303::SavePattern::SavePattern()
 void RolandTB303::SavePattern::savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo)
 {
     int savedSeq = stepSize + numberOfStepsEnabled + numberOfLoops + tempo;
-    std::cout << "Saving sequence...\n" << savedSeq;
+    std::cout << "Saving sequence..." << savedSeq << "\n";
 }
 
 bool RolandTB303::SavePattern::savingToExternal(int stepCount, std::string fileType)
 {
     if(stepCount > 0)
     {
-        std::cout << "Exporting " << fileType;
+        std::cout << "Exporting " << fileType << "\n";
         return true;
     }
-    std::cout << "Export error, no steps";
+    std::cout << "Export error, no steps" << "\n";
     return false;
 }
 
 void RolandTB303::SavePattern::displaySavingProgress(int timeRemaining, float savingRate)
 {
-    std::cout << "Time remaining: " << timeRemaining << "\n";
-    std::cout << "saving data speed: " << savingRate;
+    std::cout << "Time remaining: " << timeRemaining << " (secs)\n";
+    std::cout << "saving data speed: " << savingRate << " kbps\n";
 }
 
 void RolandTB303::programSequence(RolandTB303 sequence)
 {
     int displaySequenceCount = sequence.stepSequencer;
-    std::cout << "Number of steps: " << displaySequenceCount;
+    std::cout << "Number of steps: " << displaySequenceCount << "\n";
 }
 
 void RolandTB303::filterSignal(float cutoffFrequency)
 {
-    std::cout << "Filter CutOff: " << cutoffFrequency;
+    std::cout << "Filter CutOff: " << cutoffFrequency << " Hz\n";
 }
 
 float RolandTB303::tempoAdjust(RolandTB303 tempo)
@@ -308,7 +308,7 @@ struct Dictaphone
     int recordButton = 3;
     int playButton = 2;
     double adjustMicrophoneSensitivity = 10000.0;
-    std::string displayStorageAmount = " 900MBs";
+    std::string displayStorageAmount = "900MBs";
     float dataOutputPort = 76.f;
 
     void exportAudioFile(float audioData);
@@ -325,11 +325,11 @@ void Dictaphone::exportAudioFile(float audioData)
 {
     if(audioData != 0.f)
     {
-        std::cout << "Exporting file...";
+        std::cout << "Exporting file...\n";
     }
     else
     {
-        std::cout << "Error! No data to export...";
+        std::cout << "Error! No data to export...\n";
     }
 }
 
@@ -376,13 +376,13 @@ Screen::Screen()
 void Screen::brightnessUp(int currentBrightnessLevel)
 {
     int turnUpBrightness = currentBrightnessLevel * 2;
-    std::cout << "Brightness increased to: " << turnUpBrightness;
+    std::cout << "Brightness increased to: " << turnUpBrightness << "\n";
 }
 
 void Screen::adjustContrast(Screen screenContrast)
 {
     int changeContrast = screenContrast.numberOfPixels * screenContrast.resolution * screenContrast.aspectRatio;
-    std::cout << "Contrast increased to: " << changeContrast;
+    std::cout << "Contrast increased to: " << changeContrast << "\n";
 }
 
 int Screen::screenRatioSwitch(Screen screenRatio)
@@ -421,13 +421,13 @@ void CPU::interpolateData(CPU cpuDataStream)
 {
     std::string fileForInterpolation = "file1";
     cpuDataStream.openDataFile(fileForInterpolation);
-    std::cout << "current cache: " << cpuDataStream.cacheSize;
+    std::cout << "current cache: " << cpuDataStream.cacheSize << "\n";
 }
 
 void CPU::openDataFile(std::string fileName)
 {
     std::cout << "Select file for opening...\n";
-    std::cout << "File selected: " << fileName;
+    std::cout << "File selected: " << fileName << "\n";
 }
 
 struct GPU
@@ -453,17 +453,17 @@ void GPU::fansOn(GPU gpuFans)
 {
     if(gpuFans.fanSpeed < 0)
     {
-        std::cout << "Fans enabled";
+        std::cout << "Fans enabled" << "\n";
     }
     else
     {
-        std::cout << "Fans active";
+        std::cout << "Fans active" << "\n";
     }
 }
 
 void GPU::graphicsRendering(GPU gpu)
 {
-    while(gpu.processorSpeed > 120)
+    if (gpu.processorSpeed > 120)
     {
         // render graphics
         std::cout << "Shaders loading... not long now\n";
@@ -475,10 +475,10 @@ float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, 
     if(gpu.clockSpeed <= 2400)
     {
         int adjustClock = currentProcessorSpeed + inputClockSpeed;
-        std::cout << "Increased clock speed by " << adjustClock;
+        std::cout << "Increased clock speed by " << adjustClock << "\n";
         return 3400.f;
     }
-    std::cout << "Error";
+    std::cout << "Error" << "\n";
     return 2400.f;
 }
 
@@ -555,10 +555,10 @@ int UsbPort::connectingDevice(UsbPort usbInput)
 
 void UsbPort::fileTransferring(std::string fileToSend)
 {
-    std::cout << "File being transfered: " << fileToSend;
+    std::cout << "File being transfered: " << fileToSend << "\n";
     if(powerOutput < 10)
     {
-        std::cout << "Error, underpowered port for transfer";
+        std::cout << "Error, underpowered port for transfer" << "\n";
     }
 }
 
@@ -594,7 +594,7 @@ GamingLaptop::GamingLaptop()
 
 void GamingLaptop::loadingGame(std::string gameApplicationToOpen)
 {
-    std::cout << "Select application";
+    std::cout << "Select application" << "\n";
     cpu.openDataFile(gameApplicationToOpen);
     memory.openDataLocation(memory);
     cpu.openDataFile("fileName");
@@ -628,21 +628,148 @@ void GamingLaptop::displayingToScreen(GamingLaptop gamingLaptopDisplay)
 int main()
 {
     Example::main();
+
+    //-------------------
     Castle castle;
+    //1
+    castle.announceOrders("Release the hounds!");
+
+    //2
+    castle.openCastleGates(4);
+
+    //3
+    castle.reportCollectTaxes(10.f, Castle::FarmlandRevenue());
+    
+    //-------------------
     Castle::FarmlandRevenue farmlandrev;
+
+    //1
+    farmlandrev.displayCurrentTurnover(30, 66, 12.f, 8.f);
+    //2
+    farmlandrev.floodFarmlands(150, 23.f, true);
+    //3
+    farmlandrev.sellWheat(500, 21.f, 180.f);
+
+    //-------------------
     MidiKeyboard midikeyboard;
+
+    //1
+    midikeyboard.adjustPitch(MidiKeyboard());
+    //2
+    midikeyboard.isKeyPressed();
+    //3
+    midikeyboard.padHitAmount(MidiKeyboard());
+    
+    //-------------------
     RolandTB303 rolandtb303;
+
+    //1
+    rolandtb303.filterSignal(3500.f);
+
+    //2
+    rolandtb303.programSequence(RolandTB303());
+    //3
+    rolandtb303.tempoAdjust(RolandTB303());
+
+    //-------------------
     RolandTB303::SavePattern savepattern;
+
+    //1
+    savepattern.displaySavingProgress(35, 50.f);
+
+    //2
+    savepattern.savingSequence(4, 8, 2, 120);
+    
+    //3
+    savepattern.savingToExternal(8, "TB303.p");
+
+    //-------------------
     Dictaphone dictaphone;
+
+    //1
+    dictaphone.recordingOn(true);
+    dictaphone.recordingOn(false);
+    
+    //2
+    dictaphone.displayAvailableSpace(Dictaphone());
+    
+    //3
+    dictaphone.exportAudioFile(256.f);
+    dictaphone.exportAudioFile(0.f);
+
+    //-------------------
     Screen screen;
+
+    //1
+    screen.adjustContrast(Screen());
+
+    //2
+    screen.brightnessUp(15);
+
+    //3
+    screen.screenRatioSwitch(Screen());
+
+    //-------------------
     GPU gpu;
+
+    //1
+    gpu.fansOn(GPU());
+    
+    //2
+    gpu.graphicsRendering(GPU());
+    
+    //3
+    gpu.processorOverlocking(20, 288, GPU());
+    
+    //-------------------
     CPU cpu;
+
+    //1
+    cpu.interpolateData(CPU());
+
+    //2
+    cpu.openDataFile("Hello Musician Programmer");
+
+    //3
+    cpu.saveSelectedData(28);
+    
+    //-------------------
     Memory memory;
+
+    //1
+    memory.deleteData("Don't delete me! *screams as the digital entity is destroyed*");
+
+    //2
+    memory.openDataLocation(Memory());
+
+    //3
+    memory.writeDataToMemory(Memory());
+    
+    //-------------------
     UsbPort usbport;
+
+    //1
+    usbport.chargingConnectedDevice(UsbPort());
+
+    //2
+    usbport.connectingDevice(UsbPort());
+
+    //3
+    usbport.fileTransferring("Send me to the moon plz");
+
+    //-------------------
     GamingLaptop gaminglaptop;
 
+    //1
+    gaminglaptop.connectingDevice("War Gaming Stick of All Destruction!");
+
+    //2
+    gaminglaptop.displayingToScreen(GamingLaptop());
+
+    //3
+    gaminglaptop.loadingGame("Quake 3");
+   
     
-    
-                  
+
     std::cout << "good to go!" << std::endl;
 }
