@@ -75,6 +75,7 @@ int main()
 
 struct Castle
 {
+    Castle();
     int numberOfGates = 8;
     std::string nameOfKing = "Edward";
     std::string nameOfQueen = "Magda";
@@ -83,6 +84,7 @@ struct Castle
 
     struct FarmlandRevenue
     {
+        FarmlandRevenue();
         int arces = 65;
         int numberOfWorkers = 120;
         float wheatSalePricePerKG = 1.8f;
@@ -97,23 +99,31 @@ struct Castle
     float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome);
     void openCastleGates(int numberOfGatesClosed);
     std::string announceOrders(std::string orders);
-
-    FarmlandRevenue agricultureWorth;
 };
+
+Castle::Castle()
+{
+    std::cout << "Castle being constructed!\n";  
+}
+
+Castle::FarmlandRevenue::FarmlandRevenue()
+{
+    std::cout << "FarmlandRevenue being constructed!\n";
+}
 
 void Castle::FarmlandRevenue::sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell)
 {
     int availableStock = wheatStockLevel - 100;
     if (availableStock < 100)
     {
-        std::cout << "Stock levels too low/n";
+        std::cout << "Stock levels too low\n";
     }
     else
     {
-        std::cout << "Stock levels OK/n";
-        std::cout << "Market price: " << currentMarketPrice << "/n";
+        std::cout << "Stock levels OK\n";
+        std::cout << "Market price: " << currentMarketPrice << "\n";
         float estimatedSale = currentMarketPrice * amountToSell;
-        std::cout << "Expected sale price: " << estimatedSale << "/n";
+        std::cout << "Expected sale price: " << estimatedSale << "\n";
     }
 }
 
@@ -130,12 +140,12 @@ void Castle::FarmlandRevenue::floodFarmlands(int areaToFlood, float amountOfFloo
 {
     if(isIndrought)
     {
-        std::cout << "Select area to flood" << areaToFlood << "/n";
-        std::cout << "Adjust flood level" << amountOfFlooding << "/n";       
+        std::cout << "Select area to flood " << areaToFlood << "\n";
+        std::cout << "Adjust flood level " << amountOfFlooding << "\n";       
     }
     else
     {
-        std::cout << "Flooding not required/n";
+        std::cout << "Flooding not required\n";
     }
 }
 
@@ -144,6 +154,8 @@ float Castle::reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandInc
     float taxTotalIncome = 0.f;
     float currentlyTaxed = collectTaxes * 20;
     float produceTax = farmlandIncome.displayCurrentTurnover(45, 12, 12.f, 10.f);
+
+    std::cout << "Reporting tax collection my lord!\n";
     
     return taxTotalIncome = currentlyTaxed + produceTax;
 }
@@ -152,23 +164,24 @@ void Castle::openCastleGates(int numberOfGatesClosed)
 {
     if (numberOfGatesClosed <= 0)
     {
-        std::cout << "All gates are already open./n";
+        std::cout << "All gates are already open.\n";
     }
     else
     {
-        std::cout << "Opening " << numberOfGatesClosed << " gates.../n";
-        std::cout << "Gates opened successfully!/n";
+        std::cout << "Opening " << numberOfGatesClosed << " gates...\n";
+        std::cout << "Gates opened successfully!\n";
     }
 }
 
 std::string Castle::announceOrders(std::string orders)
 {
-    std::cout << "Here are the orders: " << orders << "/n";
+    std::cout << "Here are the orders: " << orders << "\n";
     return orders;
 }
 
 struct MidiKeyboard
 {
+    MidiKeyboard();
     int numberOfKeys = 49;
     int numberOfKnobs = 12;
     int numberOfMPCPads = 8;
@@ -180,26 +193,35 @@ struct MidiKeyboard
     float padHitAmount(MidiKeyboard padNumber);
 };
 
+MidiKeyboard::MidiKeyboard()
+{
+    std::cout << "MidiKeyboard being constructed!\n";  
+}
+
 double MidiKeyboard::adjustPitch(MidiKeyboard pitchChange)
 {    
     double adjustedPitch = pitchControlRange + pitchChange.pitchControlRange;
+
+    std::cout << "Pitch adjusting!\n";
 
     return adjustedPitch;
 }
 
 void MidiKeyboard::isKeyPressed()
 {
-    std::cout << "Key input detected/n";
+    std::cout << "Key input detected\n";
 }
 
 float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
 {
-    std::cout << padNumber.numberOfMPCPads;
+    std::cout << "Pad number: " <<padNumber.numberOfMPCPads << "\n";
+    std::cout << "BOY you hitting that pad haaaaard!!!\n";
     return 10.f;
 }
 
 struct RolandTB303
 {
+    RolandTB303();
     int stepSequencer = 16;
     int modeDial = 10;
     int tempoDial = 32;
@@ -208,6 +230,7 @@ struct RolandTB303
 
     struct SavePattern
     {
+        SavePattern();
         int numberOfSteps = 16;
         int tempoNumberSelected = 10;
         int loopCount = 4;
@@ -219,62 +242,73 @@ struct RolandTB303
         void displaySavingProgress(int timeRemaining, float savingRate);
     };
 
-    SavePattern save;
-
     void programSequence(RolandTB303 sequence);
     void filterSignal(float cutoffFrequency);
     float tempoAdjust(RolandTB303 tempo);
 };
 
+RolandTB303::RolandTB303()
+{
+    std::cout << "RolandTB303 being constructed!\n";  
+}
+
+RolandTB303::SavePattern::SavePattern()
+{
+    std::cout << "SavePattern being constructed!\n";
+}
+
 void RolandTB303::SavePattern::savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo)
 {
     int savedSeq = stepSize + numberOfStepsEnabled + numberOfLoops + tempo;
-    std::cout << "Saving sequence.../n" << savedSeq;
+    std::cout << "Saving sequence..." << savedSeq << "\n";
 }
 
 bool RolandTB303::SavePattern::savingToExternal(int stepCount, std::string fileType)
 {
     if(stepCount > 0)
     {
-        std::cout << "Exporting " << fileType;
+        std::cout << "Exporting " << fileType << "\n";
         return true;
     }
-    std::cout << "Export error, no steps";
+    std::cout << "Export error, no steps" << "\n";
     return false;
 }
 
 void RolandTB303::SavePattern::displaySavingProgress(int timeRemaining, float savingRate)
 {
-    std::cout << "Time remaining: " << timeRemaining << "/n";
-    std::cout << "saving data speed: " << savingRate;
+    std::cout << "Time remaining: " << timeRemaining << " (secs)\n";
+    std::cout << "saving data speed: " << savingRate << " kbps\n";
 }
 
 void RolandTB303::programSequence(RolandTB303 sequence)
 {
     int displaySequenceCount = sequence.stepSequencer;
-    std::cout << "Number of steps: " << displaySequenceCount;
+    std::cout << "Number of steps: " << displaySequenceCount << "\n";
 }
 
 void RolandTB303::filterSignal(float cutoffFrequency)
 {
-    std::cout << "Filter CutOff: " << cutoffFrequency;
+    std::cout << "Filter CutOff: " << cutoffFrequency << "Hz\n";
 }
 
 float RolandTB303::tempoAdjust(RolandTB303 tempo)
 {    
     if (tempo.tempoDial > 0)
     {
+        std::cout << "Tempo has been changed\n";
         return 15.f;
     }
+    std::cout << "No tempo changes here...\n";
     return 1.f;
 }
 
 struct Dictaphone
 {
+    Dictaphone();
     int recordButton = 3;
     int playButton = 2;
     double adjustMicrophoneSensitivity = 10000.0;
-    std::string displayStorageAmount = " 900MBs";
+    std::string displayStorageAmount = "900MBs";
     float dataOutputPort = 76.f;
 
     void exportAudioFile(float audioData);
@@ -282,15 +316,20 @@ struct Dictaphone
     std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
 };
 
+Dictaphone::Dictaphone()
+    {
+      std::cout << "Dictaphone being constructed!\n";  
+    }
+
 void Dictaphone::exportAudioFile(float audioData)
 {
     if(audioData != 0.f)
     {
-        std::cout << "Exporting file...";
+        std::cout << "Exporting file...\n";
     }
     else
     {
-        std::cout << "Error! No data to export...";
+        std::cout << "Error! No data to export...\n";
     }
 }
 
@@ -299,23 +338,25 @@ void Dictaphone::recordingOn(bool activeRecording)
     if(activeRecording)
     {
         int led = 1;
-        std::cout << led;
+        std::cout << "led on: " << led << "\n";
     }
     else
     {
         int led = 0;
-        std::cout << led;
+        std::cout << "led off: " << led << "\n";
     }
 }
 
 std::string Dictaphone::displayAvailableSpace(Dictaphone dictaphoneStorage)
 {
     std::string spaceAvail = dictaphoneStorage.displayStorageAmount;
+    std::cout << "Memory space available: " << spaceAvail << "\n";
     return spaceAvail;
 }
 
 struct Screen
 {
+    Screen();
     int numberOfPixels = 500;
     int refreshRate = 144;
     std::string colourSpace = "RGB";
@@ -327,25 +368,32 @@ struct Screen
     int screenRatioSwitch(Screen screenRatio);
 };
 
+Screen::Screen()
+{
+    std::cout << "Screen being constructed!\n";  
+}
+
 void Screen::brightnessUp(int currentBrightnessLevel)
 {
     int turnUpBrightness = currentBrightnessLevel * 2;
-    std::cout << "Brightness increased to: " << turnUpBrightness;
+    std::cout << "Brightness increased to: " << turnUpBrightness << "\n";
 }
 
 void Screen::adjustContrast(Screen screenContrast)
 {
     int changeContrast = screenContrast.numberOfPixels * screenContrast.resolution * screenContrast.aspectRatio;
-    std::cout << "Contrast increased to: " << changeContrast;
+    std::cout << "Contrast increased to: " << changeContrast << "\n";
 }
 
 int Screen::screenRatioSwitch(Screen screenRatio)
 {
+    std::cout << "Ratio changing, hold tight\n";
     return screenRatio.aspectRatio * screenRatio.resolution;
 }
 
 struct CPU
 {
+    CPU();
     int processorClockSpeed = 3500;
     int memoryManagementAmount = 480;
     int cacheSize = 200;
@@ -357,9 +405,15 @@ struct CPU
     void openDataFile(std::string fileName);
 };
 
+CPU::CPU()
+{
+    std::cout << "CPU being constructed!\n";  
+}
+
 int CPU::saveSelectedData(int selectedData)
 {
     int savedCode = memoryManagementAmount - selectedData;
+    std::cout << "Saving: " << savedCode << "\n";
     return savedCode;
 }
 
@@ -367,17 +421,18 @@ void CPU::interpolateData(CPU cpuDataStream)
 {
     std::string fileForInterpolation = "file1";
     cpuDataStream.openDataFile(fileForInterpolation);
-    std::cout << "current cache: " << cpuDataStream.cacheSize;
+    std::cout << "current cache: " << cpuDataStream.cacheSize << "\n";
 }
 
 void CPU::openDataFile(std::string fileName)
 {
-    std::cout << "Select file for opening.../n";
-    std::cout << "File selected: " << fileName;
+    std::cout << "Select file for opening...\n";
+    std::cout << "File selected: " << fileName << "\n";
 }
 
 struct GPU
 {
+    GPU();
     int clockSpeed = 2400;
     int memoryBusSize = 1400;
     int processorSpeed = 320;
@@ -389,23 +444,29 @@ struct GPU
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
 };
 
+GPU::GPU()
+{
+    std::cout << "GPU being constructed!\n"; 
+}
+
 void GPU::fansOn(GPU gpuFans)
 {
     if(gpuFans.fanSpeed < 0)
     {
-        std::cout << "Fans enabled";
+        std::cout << "Fans enabled" << "\n";
     }
     else
     {
-        std::cout << "Fans active";
+        std::cout << "Fans active" << "\n";
     }
 }
 
 void GPU::graphicsRendering(GPU gpu)
 {
-    while(gpu.processorSpeed > 120)
+    if (gpu.processorSpeed > 120)
     {
         // render graphics
+        std::cout << "Shaders loading... not long now\n";
     }
 }
 
@@ -414,15 +475,16 @@ float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, 
     if(gpu.clockSpeed <= 2400)
     {
         int adjustClock = currentProcessorSpeed + inputClockSpeed;
-        std::cout << "Increased clock speed by " << adjustClock;
+        std::cout << "Increased clock speed by " << adjustClock << "\n";
         return 3400.f;
     }
-    std::cout << "Error";
+    std::cout << "Error" << "\n";
     return 2400.f;
 }
 
 struct Memory
 {
+    Memory();
     int capacitySize = 256;
     std::string storageType = "SSD";
     float dataRate = 18.5f;
@@ -434,6 +496,11 @@ struct Memory
     void deleteData(std::string selectedData);
 };
 
+Memory::Memory()
+{
+    std::cout << "Memory being constructed!\n";
+}
+
 int Memory::writeDataToMemory(Memory memoryDataSource)
 {
     capacitySize = memoryDataSource.capacitySize;
@@ -442,6 +509,7 @@ int Memory::writeDataToMemory(Memory memoryDataSource)
     seekTime = memoryDataSource.seekTime;
     ramType = memoryDataSource.ramType;
 
+    std::cout << "Listing data details: " << capacitySize << "\n" << storageType << "\n" << dataRate << "\n" << seekTime << "\n" << ramType << "\n";
     return 0;
 }
 
@@ -457,6 +525,7 @@ void Memory::deleteData(std::string selectedData)
 
 struct UsbPort
 {
+    UsbPort();
     float dataTransferSpeed = 16.8f;
     int numberOfPorts = 4;
     std::string connectorType = "USB-C";
@@ -467,6 +536,11 @@ struct UsbPort
     void fileTransferring(std::string fileToSend);
     bool chargingConnectedDevice(UsbPort usbConnected);
 };
+
+UsbPort::UsbPort()
+{
+    std::cout << "UsbPort being constructed!\n";
+}
 
 int UsbPort::connectingDevice(UsbPort usbInput)
 {
@@ -481,10 +555,10 @@ int UsbPort::connectingDevice(UsbPort usbInput)
 
 void UsbPort::fileTransferring(std::string fileToSend)
 {
-    std::cout << "File being transfered: " << fileToSend;
+    std::cout << "File being transfered: " << fileToSend << "\n";
     if(powerOutput < 10)
     {
-        std::cout << "Error, underpowered port for transfer";
+        std::cout << "Error, underpowered port for transfer" << "\n";
     }
 }
 
@@ -492,13 +566,16 @@ bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
 {
     if(usbConnected.backwardCompatibility == "USB 3.0 and USB 2.0 compatible")
     {
+        std::cout << "Congrats! This USB is still relevant\n";
         return true;
     }
+    std::cout << "We are sorry to say, your stick is old\n";
     return false;
 }
 
 struct GamingLaptop
 {
+    GamingLaptop();
     Screen screen;
     CPU cpu;
     GPU gpu;
@@ -510,9 +587,14 @@ struct GamingLaptop
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
 };
 
+GamingLaptop::GamingLaptop()
+{
+    std::cout << "GamingLaptop being constructed!\n";
+}
+
 void GamingLaptop::loadingGame(std::string gameApplicationToOpen)
 {
-    std::cout << "Select application";
+    std::cout << "Select application" << "\n";
     cpu.openDataFile(gameApplicationToOpen);
     memory.openDataLocation(memory);
     cpu.openDataFile("fileName");
@@ -525,26 +607,185 @@ int GamingLaptop::connectingDevice(std::string deviceName)
     usbport.connectorType = deviceName;
     bool isCharging = usbport.chargingConnectedDevice(usbport);
     int memoryAmount = cpu.memoryManagementAmount;
-
+    
     if(isCharging && memoryAmount > 0)
     {
+        std::cout << "Charging in progress\n";
         return 0;
     }
+    std::cout << "Error with charging, please check connection\n";
     return 1;
 }
 
 void GamingLaptop::displayingToScreen(GamingLaptop gamingLaptopDisplay)
 {
-    std::cout << "Displaying gaming laptop information:" << "/n";
-    std::cout << "Screen resolution: " << gamingLaptopDisplay.screen.resolution << "/n";
-    std::cout << "CPU clock speed: " << gamingLaptopDisplay.cpu.processorClockSpeed << "/n";
-    std::cout << "GPU memory: " << gamingLaptopDisplay.gpu.memoryBusSize << "/n";
+    std::cout << "Displaying gaming laptop information:" << "\n";
+    std::cout << "Screen resolution: " << gamingLaptopDisplay.screen.resolution << "\n";
+    std::cout << "CPU clock speed: " << gamingLaptopDisplay.cpu.processorClockSpeed << "\n";
+    std::cout << "GPU memory: " << gamingLaptopDisplay.gpu.memoryBusSize << "\n";
 }
 
 int main()
 {
     Example::main();
-                  
-                  
+
+    //-------------------
+    Castle castle;
+    //1
+    castle.announceOrders("Release the hounds!");
+    std::cout << "names of royalty: " << castle.nameOfKing << " & " << castle.nameOfQueen << "\n";
+
+    //2
+    castle.openCastleGates(4);
+    std::cout << "total gates at castle: " << castle.numberOfGates << "\n";
+
+    //3
+    castle.reportCollectTaxes(10.f, Castle::FarmlandRevenue());
+    std::cout << "tax collected: " << castle.amountOfTaxesCollected << "\n";
+        
+    //-------------------
+    Castle::FarmlandRevenue farmlandrev;
+
+    //1
+    farmlandrev.displayCurrentTurnover(30, 66, 12.f, 8.f);
+    std::cout << "Current wholesale price of wheat per kg: " << farmlandrev.wheatSalePricePerKG << "\n";
+    //2
+    farmlandrev.floodFarmlands(150, 23.f, true);
+    std::cout << "Is the farmland in drought? 0 = no, 1 = yes: " << farmlandrev.isInDrought << "\n";
+    //3
+    farmlandrev.sellWheat(500, 21.f, 180.f);
+    std::cout << "Current number of able workers: " << farmlandrev.numberOfWorkers << "\n";
+
+    //-------------------
+    MidiKeyboard midikeyboard;
+
+    //1
+    midikeyboard.adjustPitch(MidiKeyboard());
+    std::cout << "List number of keys: " << midikeyboard.numberOfKeys << "\n";
+    //2
+    midikeyboard.isKeyPressed();
+    std::cout << "Available pitch control range: " << midikeyboard.pitchControlRange << "\n";
+    //3
+    midikeyboard.padHitAmount(MidiKeyboard());
+    std::cout << "Programmable pads: " << midikeyboard.numberOfMPCPads << "\n";
+    
+    //-------------------
+    RolandTB303 rolandtb303;
+
+    //1
+    rolandtb303.filterSignal(3500.f);
+    std::cout << "Volume level: " << rolandtb303.volumeKnob << "\n";
+
+    //2
+    rolandtb303.programSequence(RolandTB303());
+    
+    //3
+    rolandtb303.tempoAdjust(RolandTB303());
+    
+    //-------------------
+    RolandTB303::SavePattern savepattern;
+
+    //1
+    savepattern.displaySavingProgress(35, 50.f);
+
+    //2
+    savepattern.savingSequence(4, 8, 2, 120);
+    
+    //3
+    savepattern.savingToExternal(8, "TB303.p");
+
+    //-------------------
+    Dictaphone dictaphone;
+
+    //1
+    dictaphone.recordingOn(true);
+    dictaphone.recordingOn(false);
+    
+    //2
+    dictaphone.displayAvailableSpace(Dictaphone());
+    
+    //3
+    dictaphone.exportAudioFile(256.f);
+    dictaphone.exportAudioFile(0.f);
+
+    //-------------------
+    Screen screen;
+
+    //1
+    screen.adjustContrast(Screen());
+
+    //2
+    screen.brightnessUp(15);
+
+    //3
+    int screenRatioResult = screen.screenRatioSwitch(Screen());
+    std::cout << "Screen switch complete, total pixels used: " << screenRatioResult << "\n";
+
+    //-------------------
+    GPU gpu;
+
+    //1
+    gpu.fansOn(GPU());
+    
+    //2
+    gpu.graphicsRendering(GPU());
+    
+    //3
+    float currentProcessorSpeed = gpu.processorOverlocking(20, 288, GPU());
+    std::cout << "Current processor speed: " << currentProcessorSpeed << "Hz\n";
+    
+    //-------------------
+    CPU cpu;
+
+    //1
+    cpu.interpolateData(CPU());
+
+    //2
+    cpu.openDataFile("Hello Musician Programmer");
+
+    //3
+    cpu.saveSelectedData(28);
+    
+    //-------------------
+    Memory memory;
+
+    //1
+    memory.deleteData("Don't delete me! *screams as the digital entity is destroyed*");
+
+    //2
+    memory.openDataLocation(Memory());
+
+    //3
+    int memoryResult = memory.writeDataToMemory(Memory());
+    std::cout << "Memory written total: " << memoryResult << "\n";
+    
+    //-------------------
+    UsbPort usbport;
+
+    //1
+    usbport.chargingConnectedDevice(UsbPort());
+
+    //2
+    bool usbResult = usbport.connectingDevice(UsbPort());
+    std::cout << "USB connecting device secure (0 = yes, 1 = no): " << usbResult << "\n";
+    
+    //3
+    usbport.fileTransferring("Send me to the moon plz");
+
+    //-------------------
+    GamingLaptop gaminglaptop;
+
+    //1
+    gaminglaptop.connectingDevice("War Gaming Stick of All Destruction!");
+
+    //2
+    gaminglaptop.displayingToScreen(GamingLaptop());
+
+    //3
+    gaminglaptop.loadingGame("Quake 3");
+    
+   
+    
+
     std::cout << "good to go!" << std::endl;
 }
