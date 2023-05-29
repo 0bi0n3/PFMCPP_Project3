@@ -85,6 +85,7 @@ struct Castle
 
     struct FarmlandRevenue
     {
+        int totalRevenue = 2500;
         int arces {65}, numberOfWorkers {120};
         float wheatSalePricePerKG {1.8f};
         std::string type {"Cereals and Grains"};
@@ -97,7 +98,7 @@ struct Castle
         void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
         
 // new function
-        void hireNewWorkers();
+        void hireNewWorkers(int startWorkers, int revenueThreshold);
     };
 
     float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome);
@@ -105,17 +106,57 @@ struct Castle
     std::string announceOrders(std::string orders);
     
 // new function
-    void fireSignalArrow();
+    void fireSignalArrow(int startArrows, int targetHits);
 };
 
-void Castle::FarmlandRevenue::hireNewWorkers()
+void Castle::FarmlandRevenue::hireNewWorkers(int startWorkers, int revenueThreshold)
 {
-    
+    int worker = (numberOfWorkers / numberOfWorkers);
+    int workers = startWorkers;
+    int revenuePerWorkerPerDay = (worker * 10);
+    int revenue = workers * revenuePerWorkerPerDay;
+
+    while (revenue < revenueThreshold) 
+    {
+        ++workers;
+        revenue = workers * revenuePerWorkerPerDay;
+        if (revenue >= revenueThreshold) {
+            std::cout << "Hired " << workers << " workers to reach the revenue threshold.\n";
+            return;
+        }
+    }
+    std::cout << "The initial number of workers already generates enough revenue.\n";
 }
 
-void Castle::fireSignalArrow()
+void Castle::fireSignalArrow(int startArrows, int targetHits) 
 {
-    
+    int arrows = startArrows;
+    int hits = 0;
+
+    while (arrows > 0 && hits < targetHits) 
+    {
+        --arrows;
+
+        int hitTarget = rand() % 2;
+        if (hitTarget == 1) 
+        {
+            ++hits;
+            std::cout << "Target hit! Total hits: " << hits << "\n";
+        } 
+        else 
+        {
+            std::cout << "Missed. Remaining arrows: " << arrows << "\n";
+        }
+        if (hits >= targetHits) 
+        {
+            std::cout << "Target hits threshold reached with " << arrows << " arrows left.\n";
+            return;
+        }
+    }
+    if (arrows == 0) 
+    {
+        std::cout << "Out of arrows. Total hits: " << hits << "\n";
+    }
 }
 
 Castle::Castle() : numberOfGates(8), nameOfKing("Edward"), nameOfQueen("Magda"), amountOfTaxesCollected(300.f), isAtWar(true)
@@ -209,12 +250,35 @@ struct MidiKeyboard
     float padHitAmount(MidiKeyboard padNumber);
 
     // new function
-    void ledLightDemoMode();
+    void ledLightDemoMode(std::string onOff);
 };
 
-void MidiKeyboard::ledLightDemoMode()
+void MidiKeyboard::ledLightDemoMode(std::string onOff)
 {
-    
+    int totalLedsOnKeyboard = 1;
+    if (onOff == "on")
+    {
+        for (int led = 0; led < totalLedsOnKeyboard; ++led)
+            {
+                std::cout << "**\n";
+                std::cout << "     **\n";
+                std::cout << "          **\n";
+                std::cout << "               **\n";
+                std::cout << "   PROGRAMMING      **\n";
+                std::cout << "   FOR                   **\n";
+                std::cout << "   MUSICIANS                  **\n";
+                std::cout << "   IS                    **\n";
+                std::cout << "   GREAT!           **\n";
+                std::cout << "               **\n";
+                std::cout << "          **\n";
+                std::cout << "     **\n";
+                std::cout << "**\n";
+            }
+    }
+    else
+    {
+         std::cout << "*BLINK* please enter ""on"" for light demo\n";
+    }
 }
 
 MidiKeyboard::MidiKeyboard() : numberOfKeys(25), numberOfKnobs(16), numberOfMPCPads(4), pitchControlRange(300000.0), modeSelection('Y')
@@ -263,7 +327,7 @@ struct RolandTB303
         void displaySavingProgress(int timeRemaining, float savingRate);
 
         // new function
-        void recallPattern();
+        void recallPattern(char X);
     };
 
     void programSequence(RolandTB303 sequence);
@@ -271,17 +335,59 @@ struct RolandTB303
     float tempoAdjust(RolandTB303 tempo);
 
     // new function
-    void syncMidi();
+    int syncMidi(int midiNotesIn);
 };
 
-void RolandTB303::SavePattern::recallPattern()
-{
-    
+void RolandTB303::SavePattern::recallPattern(char X)
+{    
+    if (X == 'A')
+    {
+    std::cout << "Loading previous sequence... " << X << "\n";
+    int sequenceMemory = 25;
+    std::cout << "Sequence step total: " << sequenceMemory << "\n";
+    for (int seq = 0; seq < 25; ++seq)
+        {
+            std::cout << "Step " << (seq + 1) << " loaded\n";
+        }
+    }
+    else if (X == 'B')
+    {
+        std::cout << "Loading previous sequence... " << X << "\n";
+        int sequenceMemory = 15;
+        std::cout << "Sequence step total: " << sequenceMemory << "\n";
+        for (int seq = 0; seq < 25; ++seq)
+        {
+            std::cout << "Step " << (seq + 1) << " loaded\n";
+        }   
+    }
+    else if (X == 'C')
+    {
+        std::cout << "Loading previous sequence... " << X << "\n";
+        int sequenceMemory = 41;
+        std::cout << "Sequence step total: " << sequenceMemory << "\n";
+        for (int seq = 0; seq < 25; ++seq)
+        {
+            std::cout << "Step " << (seq + 1) << " loaded\n";
+        } 
+    }
+    else
+    {
+        std::cout << "Loading previous sequence ERROR...\n" << "Please try again...\n";
+    }
 }
 
-void RolandTB303::syncMidi()
+int RolandTB303::syncMidi(int midiNotesIn)
 {
-    
+    int totalMidiCount = midiNotesIn;
+    for (int note = 0; note < midiNotesIn; ++note)
+        {
+            std::cout << "Syncing MIDI...\n";
+            if (midiNotesIn != 0)
+            {
+                std::cout << "MIDI sync progress " << (note + 1) << " out of " << midiNotesIn << " \n" << "MIDI notes remaining before full sync " << (totalMidiCount -= 1) << " \n";
+            }
+        }
+    return totalMidiCount;
 }
 
 RolandTB303::RolandTB303()
@@ -357,9 +463,16 @@ struct Dictaphone
 };
 
 int Dictaphone::flagNumberOfSpeakers()
-{
+{    
+    int Voices = 4;
+    for (int headCounter = 0; headCounter < Voices; ++headCounter)
+        {
+            adjustMicrophoneSensitivity /= 5.0;
+            std::cout << "Number of voices present " << Voices << " \n";
+            std::cout << "Microphone sensitiy being actively reduced by " << (adjustMicrophoneSensitivity * 5) << " \n";
+        }
 
-    return 1;
+    return Voices;
 }
 
 
@@ -413,13 +526,38 @@ struct Screen
     int screenRatioSwitch(Screen screenRatio);
 
     // new function
-    std::string displaySource();
+    void displayAvailableSources(int availablePorts);
 };
 
-std::string Screen::displaySource()
+void Screen::displayAvailableSources(int availablePorts) 
 {
+    for(int port = 1; port <= availablePorts; ++port) 
+    {
+        std::string source;
 
-    return "string";
+        if(port == 1) 
+        {
+            source = "HDMI 1";
+        } 
+        else if(port == 2) 
+        {
+            source = "Gaming PC";
+        } 
+        else if(port == 3) 
+        {
+            source = "Netflix";
+        } 
+        else if(port == 4) 
+        {
+            source = "USB Port";
+        } 
+        else 
+        {
+            source = "Other Source";
+        }
+        
+        std::cout << "Source port location " << port << ": " << source << "\n";
+    }
 }
 
 Screen::Screen() : numberOfPixels(4000), refreshRate(60), aspectRatio(10*5), resolution(4000), colourSpace("V:RGBY")
@@ -462,7 +600,18 @@ struct CPU
 
 void CPU::increaseRAMAllocation()
 {
-    
+    int ramMemAlloc = 0;
+                std::cout << "Current RAM available " << ramSize << " \n";
+    std::cout << "Increasing RAM allocation...\n";
+    for (int i = 0; i < ramSize; ++i)
+        {
+            ramMemAlloc += 2;
+            std::cout << "RAM allocation increased to " << ramMemAlloc << " Gbs\n";
+            if (ramMemAlloc != (ramSize * 2))
+            {
+            ++i;
+            }
+        }
 }
 
 CPU::CPU()
@@ -501,12 +650,25 @@ struct GPU
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
 
     // new function
-    void decreaseRenderingRate();
+    void decreaseRenderingRate(int changeRenderRate);
 };
 
-void GPU::decreaseRenderingRate()
+void GPU::decreaseRenderingRate(int changeRenderRate)
 {
-    
+    while (changeRenderRate != 0)
+        {
+            if (changeRenderRate < 50)
+            {
+                changeRenderRate = 0;
+                std::cout << "Render rate at minimum! Please increase rate.\n";
+            }
+            else
+            {
+                changeRenderRate /= 2;
+                std::cout << "Rendering decreased by a factor of " << (changeRenderRate * 10) << " Hz\n";
+                changeRenderRate = 0;
+            }
+        }
 }
 
 GPU::GPU() : clockSpeed(4800), memoryBusSize(1200), processorSpeed(135), numberOfInputOutputStreams(12), fanSpeed(36)
@@ -562,13 +724,26 @@ struct Memory
     void deleteData(std::string selectedData);
 
     // new function
-    int allocateBufferMemory();
+    int allocateBufferMemory(int bufferSizeNeeded);
 };
 
-int Memory::allocateBufferMemory()
+int Memory::allocateBufferMemory(int bufferSizeNeeded)
 {
-
-    return 0;
+    int bufferAllocate = 0;
+    for (int buffer = 0; buffer < bufferSizeNeeded; ++buffer)
+        {
+            if (bufferSizeNeeded > 0)
+            {
+                bufferAllocate += 256;
+                std::cout << "Buffer block of " << bufferAllocate << " allocated\n";
+                ++buffer;
+            }
+            else
+            {
+                std::cout << "Buffer request too small\n";
+            }
+        }
+    return bufferAllocate;
 }
 
 Memory::Memory()
@@ -600,6 +775,7 @@ void Memory::deleteData(std::string selectedData)
 
 struct UsbPort
 {
+    
     float dataTransferSpeed;
     int numberOfPorts;
     std::string connectorType;
@@ -612,12 +788,21 @@ struct UsbPort
     void fileTransferring(std::string fileToSend);
     bool chargingConnectedDevice(UsbPort usbConnected);
 
-    void flashConnectionLight();
+    void flashConnectionLight(int connectedDevices);
 };
 
-void UsbPort::flashConnectionLight()
+void UsbPort::flashConnectionLight(int connectedDevices)
 {
     
+    for(int flashCount = 0; flashCount < connectedDevices; ++flashCount)
+        {
+            int totalDevices = flashCount;
+            if (connectedDevices != totalDevices)
+            {
+                std::cout << "Flashing connection LED for device: " << (totalDevices + 1) << " \n";
+                
+            }
+        }
 }
 
 UsbPort::UsbPort() : dataTransferSpeed(20.9f), numberOfPorts(8), connectorType("USB-B"), powerOutput(10), backwardCompatibility("USB 2.5 ONLY")
@@ -658,6 +843,8 @@ bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
 
 struct GamingLaptop
 {
+    bool isConnected;
+    int connectionAttempts;
     Screen screen;
     CPU cpu;
     GPU gpu;
@@ -671,15 +858,33 @@ struct GamingLaptop
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
 
     // new function
-    void connectToMultiplayer();
+    void connectToMultiplayer(int maximumAttempts);
 };
 
-void GamingLaptop::connectToMultiplayer()
+void GamingLaptop::connectToMultiplayer(int maximumAttempts)
 {
-    
+    for(connectionAttempts = 0; connectionAttempts < maximumAttempts; ++connectionAttempts)
+        {
+            int successfulConnection = rand() % 2;
+
+            if(successfulConnection == 1)
+            {
+                isConnected = true;
+                std::cout << "Successfully connected to multiplayer server on attempt " << (connectionAttempts + 1) << ".\n";
+                break;
+            }
+            else
+            {
+                std::cout << "Attempt " << (connectionAttempts + 1) << " to server failed. Attempting to reconnect...\n";
+            }
+        }
+    if (!isConnected)
+    {
+        std::cout << "Connection to multiplayer server failed after " << maximumAttempts << " attempts. Please check connection\n";
+    }
 }
 
-GamingLaptop::GamingLaptop()
+GamingLaptop::GamingLaptop() : isConnected(false), connectionAttempts(0)
 {
     std::cout << "GamingLaptop being constructed!\n";
 }
@@ -734,6 +939,9 @@ int main()
     //3
     castle.reportCollectTaxes(10.f, Castle::FarmlandRevenue());
     std::cout << "tax collected: " << castle.amountOfTaxesCollected << "\n";
+
+    //4
+    castle.fireSignalArrow(20, 8); // enter how many arrows first, then hit threshold requirement value
         
     //-------------------
     Castle::FarmlandRevenue farmlandrev;
@@ -748,6 +956,9 @@ int main()
     farmlandrev.sellWheat(500, 21.f, 180.f);
     std::cout << "Current number of able workers: " << farmlandrev.numberOfWorkers << "\n";
 
+    //4
+    farmlandrev.hireNewWorkers(10, 3000);
+
     //-------------------
     MidiKeyboard midikeyboard;
 
@@ -760,6 +971,9 @@ int main()
     //3
     midikeyboard.padHitAmount(MidiKeyboard());
     std::cout << "Programmable pads: " << midikeyboard.numberOfMPCPads << "\n";
+
+    //4
+    midikeyboard.ledLightDemoMode("on"); // enter "on" for demo
     
     //-------------------
     RolandTB303 rolandtb303;
@@ -773,6 +987,9 @@ int main()
     
     //3
     rolandtb303.tempoAdjust(RolandTB303());
+
+    //4
+    rolandtb303.syncMidi(15); // enter number of midi notes
     
     //-------------------
     RolandTB303::SavePattern savepattern;
@@ -785,6 +1002,9 @@ int main()
     
     //3
     savepattern.savingToExternal(8, "TB303.p");
+
+    //4
+    savepattern.recallPattern('C'); // enter 'A', 'B', 'C' to recall partern
 
     //-------------------
     Dictaphone dictaphone;
@@ -800,6 +1020,9 @@ int main()
     dictaphone.exportAudioFile(256.f);
     dictaphone.exportAudioFile(0.f);
 
+    //4
+    dictaphone.flagNumberOfSpeakers();
+
     //-------------------
     Screen screen;
 
@@ -813,6 +1036,9 @@ int main()
     int screenRatioResult = screen.screenRatioSwitch(Screen());
     std::cout << "Screen switch complete, total pixels used: " << screenRatioResult << "\n";
 
+    //4
+    screen.displayAvailableSources(1); // enter port number
+
     //-------------------
     GPU gpu;
 
@@ -825,6 +1051,9 @@ int main()
     //3
     float currentProcessorSpeed = gpu.processorOverlocking(20, 288, GPU());
     std::cout << "Current processor speed: " << currentProcessorSpeed << "Hz\n";
+
+    //4
+    gpu.decreaseRenderingRate(144); // enter rendering rate in Hz
     
     //-------------------
     CPU cpu;
@@ -837,6 +1066,9 @@ int main()
 
     //3
     cpu.saveSelectedData(28);
+
+    //4
+    cpu.increaseRAMAllocation();
     
     //-------------------
     Memory memory;
@@ -850,6 +1082,9 @@ int main()
     //3
     int memoryResult = memory.writeDataToMemory(Memory());
     std::cout << "Memory written total: " << memoryResult << "\n";
+
+    //4
+    memory.allocateBufferMemory(4); // enter number of buffers.
     
     //-------------------
     UsbPort usbport;
@@ -864,6 +1099,9 @@ int main()
     //3
     usbport.fileTransferring("Send me to the moon plz");
 
+    //4
+    usbport.flashConnectionLight(10); // enter number of connections.
+
     //-------------------
     GamingLaptop gaminglaptop;
 
@@ -875,8 +1113,9 @@ int main()
 
     //3
     gaminglaptop.loadingGame("Quake 3");
-    
-   
+
+    //4
+    gaminglaptop.connectToMultiplayer(1); // enter number of attempts.
     
 
     std::cout << "good to go!" << std::endl;
