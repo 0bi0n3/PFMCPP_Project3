@@ -43,21 +43,22 @@ int main()
 
 struct Castle
 {
+    int numberOfGates;
+    std::string nameOfKing;
+    std::string nameOfQueen;
+    float amountOfTaxesCollected;
+    bool isAtWar;
+
     Castle();
-    int numberOfGates = 8;
-    std::string nameOfKing = "Edward";
-    std::string nameOfQueen = "Magda";
-    float amountOfTaxesCollected = 349.77f;
-    bool isAtWar = false;
 
     struct FarmlandRevenue
     {
+        int arces {65}, numberOfWorkers {120};
+        float wheatSalePricePerKG {1.8f};
+        std::string type {"Cereals and Grains"};
+        bool isInDrought {false};
+
         FarmlandRevenue();
-        int arces = 65;
-        int numberOfWorkers = 120;
-        float wheatSalePricePerKG = 1.8f;
-        std::string type = "Cereals and Grains";
-        bool isInDrought = false;
 
         void sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell);
         float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice);
@@ -69,7 +70,7 @@ struct Castle
     std::string announceOrders(std::string orders);
 };
 
-Castle::Castle()
+Castle::Castle() : numberOfGates(8), nameOfKing("Edward"), nameOfQueen("Magda"), amountOfTaxesCollected(300.f), isAtWar(true)
 {
     std::cout << "Castle being constructed!\n";  
 }
@@ -149,19 +150,18 @@ std::string Castle::announceOrders(std::string orders)
 
 struct MidiKeyboard
 {
+    int numberOfKeys, numberOfKnobs, numberOfMPCPads;
+    double pitchControlRange;
+    char modeSelection;
+
     MidiKeyboard();
-    int numberOfKeys = 49;
-    int numberOfKnobs = 12;
-    int numberOfMPCPads = 8;
-    double pitchControlRange = 200000.0;
-    char modeSelection = 'X';
 
     double adjustPitch(MidiKeyboard pitchChange);
     void isKeyPressed();
     float padHitAmount(MidiKeyboard padNumber);
 };
 
-MidiKeyboard::MidiKeyboard()
+MidiKeyboard::MidiKeyboard() : numberOfKeys(25), numberOfKnobs(16), numberOfMPCPads(4), pitchControlRange(300000.0), modeSelection('Y')
 {
     std::cout << "MidiKeyboard being constructed!\n";  
 }
@@ -189,21 +189,18 @@ float MidiKeyboard::padHitAmount(MidiKeyboard padNumber)
 
 struct RolandTB303
 {
+    int stepSequencer {16}, modeDial {10}, tempoDial {32};
+    float cutoffFrequencyFilterKnob {750.f}, volumeKnob {-18.f};
+
     RolandTB303();
-    int stepSequencer = 16;
-    int modeDial = 10;
-    int tempoDial = 32;
-    float cutoffFrequencyFilterKnob = 750.f;
-    float volumeKnob = 96.f;
 
     struct SavePattern
     {
+        int numberOfSteps, tempoNumberSelected, loopCount;
+        bool exportingToExternalDisk;
+        float randomisationAmount;
+
         SavePattern();
-        int numberOfSteps = 16;
-        int tempoNumberSelected = 10;
-        int loopCount = 4;
-        bool exportingToExternalDisk = false;
-        float randomisationAmount = 4.f;
 
         void savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo);
         bool savingToExternal(int stepCount, std::string fileType = "TB303.p");
@@ -220,7 +217,7 @@ RolandTB303::RolandTB303()
     std::cout << "RolandTB303 being constructed!\n";  
 }
 
-RolandTB303::SavePattern::SavePattern()
+RolandTB303::SavePattern::SavePattern() : numberOfSteps(24), tempoNumberSelected(12), loopCount(8), exportingToExternalDisk(true), randomisationAmount(8.5f)
 {
     std::cout << "SavePattern being constructed!\n";
 }
@@ -272,12 +269,12 @@ float RolandTB303::tempoAdjust(RolandTB303 tempo)
 
 struct Dictaphone
 {
+    int recordButton {3}, playButton {2};
+    double adjustMicrophoneSensitivity {10000.0};
+    std::string displayStorageAmount {"900MBs"};
+    float dataOutputPort {76.f};
+
     Dictaphone();
-    int recordButton = 3;
-    int playButton = 2;
-    double adjustMicrophoneSensitivity = 10000.0;
-    std::string displayStorageAmount = "900MBs";
-    float dataOutputPort = 76.f;
 
     void exportAudioFile(float audioData);
     void recordingOn(bool activeRecording);
@@ -324,19 +321,17 @@ std::string Dictaphone::displayAvailableSpace(Dictaphone dictaphoneStorage)
 
 struct Screen
 {
-    Screen();
-    int numberOfPixels = 500;
-    int refreshRate = 144;
+    int numberOfPixels, refreshRate, aspectRatio, resolution;
     std::string colourSpace = "RGB";
-    int aspectRatio = 16 * 9;
-    int resolution = 1080;
+  
+    Screen();
 
     void brightnessUp(int currentBrightnessLevel);
     void adjustContrast(Screen screenContrast);
     int screenRatioSwitch(Screen screenRatio);
 };
 
-Screen::Screen()
+Screen::Screen() : numberOfPixels(4000), refreshRate(60), aspectRatio(10*5), resolution(4000), colourSpace("V:RGBY")
 {
     std::cout << "Screen being constructed!\n";  
 }
@@ -361,12 +356,10 @@ int Screen::screenRatioSwitch(Screen screenRatio)
 
 struct CPU
 {
+    int processorClockSpeed {3500}, memoryManagementAmount {480}, cacheSize {200}, ramSize {16};
+    std::string architectureType {"x86_64"};
+
     CPU();
-    int processorClockSpeed = 3500;
-    int memoryManagementAmount = 480;
-    int cacheSize = 200;
-    int ramSize = 16;
-    std::string architectureType = "x86_64";
 
     int saveSelectedData(int selectedData);
     void interpolateData(CPU cpuDataStream);
@@ -400,19 +393,16 @@ void CPU::openDataFile(std::string fileName)
 
 struct GPU
 {
+    int clockSpeed, memoryBusSize, processorSpeed, numberOfInputOutputStreams, fanSpeed;
+
     GPU();
-    int clockSpeed = 2400;
-    int memoryBusSize = 1400;
-    int processorSpeed = 320;
-    int numberOfInputOutputStreams = 6;
-    int fanSpeed = 12;
 
     void fansOn(GPU gpuFans);
     void graphicsRendering(GPU gpu);
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
 };
 
-GPU::GPU()
+GPU::GPU() : clockSpeed(4800), memoryBusSize(1200), processorSpeed(135), numberOfInputOutputStreams(12), fanSpeed(36)
 {
     std::cout << "GPU being constructed!\n"; 
 }
@@ -452,12 +442,13 @@ float GPU::processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, 
 
 struct Memory
 {
+    int capacitySize {256};
+    std::string storageType {"SSD"};
+    float dataRate {18.5f};
+    double seekTime {46.889};
+    std::string ramType {"DRAM"};
+
     Memory();
-    int capacitySize = 256;
-    std::string storageType = "SSD";
-    float dataRate = 18.5f;
-    double seekTime = 46.889;
-    std::string ramType = "DRAM";
 
     int writeDataToMemory(Memory memoryDataSource);
     void openDataLocation(Memory memoryaddress);
@@ -493,19 +484,20 @@ void Memory::deleteData(std::string selectedData)
 
 struct UsbPort
 {
+    float dataTransferSpeed;
+    int numberOfPorts;
+    std::string connectorType;
+    int powerOutput;
+    std::string backwardCompatibility;
+
     UsbPort();
-    float dataTransferSpeed = 16.8f;
-    int numberOfPorts = 4;
-    std::string connectorType = "USB-C";
-    int powerOutput = 20;
-    std::string backwardCompatibility = "USB 3.0 and USB 2.0 compatible";
 
     int connectingDevice(UsbPort usbInput);
     void fileTransferring(std::string fileToSend);
     bool chargingConnectedDevice(UsbPort usbConnected);
 };
 
-UsbPort::UsbPort()
+UsbPort::UsbPort() : dataTransferSpeed(20.9f), numberOfPorts(8), connectorType("USB-B"), powerOutput(10), backwardCompatibility("USB 2.5 ONLY")
 {
     std::cout << "UsbPort being constructed!\n";
 }
@@ -543,12 +535,13 @@ bool UsbPort::chargingConnectedDevice(UsbPort usbConnected)
 
 struct GamingLaptop
 {
-    GamingLaptop();
     Screen screen;
     CPU cpu;
     GPU gpu;
     Memory memory;
     UsbPort usbport;
+
+    GamingLaptop();
 
     void loadingGame(std::string gameApplicationToOpen);
     int connectingDevice(std::string deviceName);
