@@ -95,12 +95,28 @@ struct Castle
         void sellWheat(int wheatStockLevel, float currentMarketPrice, float amountToSell);
         float displayCurrentTurnover(int totalWorkers, int farmlandArea, float currentMarketPrice, float previousMarketPrice);
         void floodFarmlands(int areaToFlood, float amountOfFlooding, bool isIndrought);
+        
+// new function
+        void hireNewWorkers();
     };
 
     float reportCollectTaxes(float collectTaxes, FarmlandRevenue farmlandIncome);
     void openCastleGates(int numberOfGatesClosed);
     std::string announceOrders(std::string orders);
+    
+// new function
+    void fireSignalArrow();
 };
+
+void Castle::FarmlandRevenue::hireNewWorkers()
+{
+    
+}
+
+void Castle::fireSignalArrow()
+{
+    
+}
 
 Castle::Castle() : numberOfGates(8), nameOfKing("Edward"), nameOfQueen("Magda"), amountOfTaxesCollected(300.f), isAtWar(true)
 {
@@ -191,7 +207,15 @@ struct MidiKeyboard
     double adjustPitch(MidiKeyboard pitchChange);
     void isKeyPressed();
     float padHitAmount(MidiKeyboard padNumber);
+
+    // new function
+    void ledLightDemoMode();
 };
+
+void MidiKeyboard::ledLightDemoMode()
+{
+    
+}
 
 MidiKeyboard::MidiKeyboard() : numberOfKeys(25), numberOfKnobs(16), numberOfMPCPads(4), pitchControlRange(300000.0), modeSelection('Y')
 {
@@ -237,12 +261,28 @@ struct RolandTB303
         void savingSequence(int stepSize, int numberOfStepsEnabled, int numberOfLoops, int tempo);
         bool savingToExternal(int stepCount, std::string fileType = "TB303.p");
         void displaySavingProgress(int timeRemaining, float savingRate);
+
+        // new function
+        void recallPattern();
     };
 
     void programSequence(RolandTB303 sequence);
     void filterSignal(float cutoffFrequency);
     float tempoAdjust(RolandTB303 tempo);
+
+    // new function
+    void syncMidi();
 };
+
+void RolandTB303::SavePattern::recallPattern()
+{
+    
+}
+
+void RolandTB303::syncMidi()
+{
+    
+}
 
 RolandTB303::RolandTB303()
 {
@@ -311,7 +351,17 @@ struct Dictaphone
     void exportAudioFile(float audioData);
     void recordingOn(bool activeRecording);
     std::string displayAvailableSpace(Dictaphone dictaphoneStorage);
+
+    // new function
+    int flagNumberOfSpeakers();
 };
+
+int Dictaphone::flagNumberOfSpeakers()
+{
+
+    return 1;
+}
+
 
 Dictaphone::Dictaphone()
     {
@@ -361,7 +411,16 @@ struct Screen
     void brightnessUp(int currentBrightnessLevel);
     void adjustContrast(Screen screenContrast);
     int screenRatioSwitch(Screen screenRatio);
+
+    // new function
+    std::string displaySource();
 };
+
+std::string Screen::displaySource()
+{
+
+    return "string";
+}
 
 Screen::Screen() : numberOfPixels(4000), refreshRate(60), aspectRatio(10*5), resolution(4000), colourSpace("V:RGBY")
 {
@@ -396,7 +455,15 @@ struct CPU
     int saveSelectedData(int selectedData);
     void interpolateData(CPU cpuDataStream);
     void openDataFile(std::string fileName);
+
+    // new function
+    void increaseRAMAllocation();
 };
+
+void CPU::increaseRAMAllocation()
+{
+    
+}
 
 CPU::CPU()
 {
@@ -432,7 +499,15 @@ struct GPU
     void fansOn(GPU gpuFans);
     void graphicsRendering(GPU gpu);
     float processorOverlocking(int currentProcessorSpeed, int inputClockSpeed, GPU gpu);
+
+    // new function
+    void decreaseRenderingRate();
 };
+
+void GPU::decreaseRenderingRate()
+{
+    
+}
 
 GPU::GPU() : clockSpeed(4800), memoryBusSize(1200), processorSpeed(135), numberOfInputOutputStreams(12), fanSpeed(36)
 {
@@ -485,7 +560,16 @@ struct Memory
     int writeDataToMemory(Memory memoryDataSource);
     void openDataLocation(Memory memoryaddress);
     void deleteData(std::string selectedData);
+
+    // new function
+    int allocateBufferMemory();
 };
+
+int Memory::allocateBufferMemory()
+{
+
+    return 0;
+}
 
 Memory::Memory()
 {
@@ -527,7 +611,14 @@ struct UsbPort
     int connectingDevice(UsbPort usbInput);
     void fileTransferring(std::string fileToSend);
     bool chargingConnectedDevice(UsbPort usbConnected);
+
+    void flashConnectionLight();
 };
+
+void UsbPort::flashConnectionLight()
+{
+    
+}
 
 UsbPort::UsbPort() : dataTransferSpeed(20.9f), numberOfPorts(8), connectorType("USB-B"), powerOutput(10), backwardCompatibility("USB 2.5 ONLY")
 {
@@ -578,7 +669,15 @@ struct GamingLaptop
     void loadingGame(std::string gameApplicationToOpen);
     int connectingDevice(std::string deviceName);
     void displayingToScreen(GamingLaptop gamingLaptopDisplay);
+
+    // new function
+    void connectToMultiplayer();
 };
+
+void GamingLaptop::connectToMultiplayer()
+{
+    
+}
 
 GamingLaptop::GamingLaptop()
 {
