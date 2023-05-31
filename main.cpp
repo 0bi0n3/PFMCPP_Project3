@@ -120,7 +120,8 @@ void Castle::FarmlandRevenue::hireNewWorkers(int startWorkers, int revenueThresh
     {
         ++workers;
         revenue = workers * revenuePerWorkerPerDay;
-        if (revenue >= revenueThreshold) {
+        if (revenue >= revenueThreshold) 
+        {
             std::cout << "Hired " << workers << " workers to reach the revenue threshold.\n";
             return;
         }
@@ -346,14 +347,14 @@ void RolandTB303::SavePattern::recallPattern(char X)
 {    
     if (X == 'A')
     {
-    std::cout << "Loading previous sequence... " << X << "\n";
-    int sequenceMemory = 25;
-    std::cout << "Sequence step total: " << sequenceMemory << "\n";
+        std::cout << "Loading previous sequence... " << X << "\n";
+        int sequenceMemory = 25;
+        std::cout << "Sequence step total: " << sequenceMemory << "\n";
         
-    for (int seq = 0; seq < 25; ++seq)
-    {
-        std::cout << "Step " << (seq + 1) << " loaded\n";
-    }
+        for (int seq = 0; seq < 25; ++seq)
+        {
+            std::cout << "Step " << (seq + 1) << " loaded\n";
+        }
     }
     else if (X == 'B')
     {
@@ -805,7 +806,6 @@ struct UsbPort
 
 void UsbPort::flashConnectionLight(int connectedDevices)
 {
-    
     for(int flashCount = 0; flashCount < connectedDevices; ++flashCount)
     {
         int totalDevices = flashCount;
